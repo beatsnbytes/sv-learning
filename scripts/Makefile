@@ -1,17 +1,18 @@
 # Makefile for SystemVerilog simulation with Verilator
-# Usage: make sim
+# Usage: make sim TOP=<testbench_name>
 
-TOP = and_gate_tb
-RTL = ../rtl/and_gate.sv
-TB = ../tb/and_gate_tb.sv
+# Default target
+TOP ?= and_gate_tb
+RTL_DIR = ../rtl
+TB_DIR = ../tb
 
 sim:
 	verilator --binary --sv --trace \
 		-o $(TOP) \
-		$(RTL) $(TB) \
+		$(RTL_DIR)/*.sv $(TB_DIR)/$(TOP).sv \
 		--top-module $(TOP)
 	./obj_dir/$(TOP)
-	gtkwave ../sim/and_gate.vcd
+	gtkwave ../sim/$(TOP).vcd
 
 clean:
 	rm -rf obj_dir
