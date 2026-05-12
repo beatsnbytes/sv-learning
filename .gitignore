@@ -1,0 +1,26 @@
+# Verilator build output
+obj_dir/
+
+# Simulation artifacts
+sim/*.vcd
+sim/*.fst
+sim/*.lxt
+
+# GTKWave save files
+*.gtkw
+
+# Compiled binaries
+*.o
+*.a
+*.so
+simv
+simv.daidir/
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Editor clutter
+*.swp
+*.swo
+.vscode/
