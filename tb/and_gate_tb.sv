@@ -17,7 +17,7 @@ module and_gate_tb;
 	// Main test
 	initial begin
 		// save waveform
-		$dumpfile("../sim/and_gate.vcd");
+		$dumpfile("../sim/and_gate_tb.vcd");
 		$dumpvars(0, and_gate_tb);
 
 		// Apply al input combinations
