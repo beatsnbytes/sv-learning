@@ -9,6 +9,9 @@ sim/*.lxt
 # GTKWave save files
 *.gtkw
 
+# Yosys synthesis output
+sim/*_synth.v
+
 # Compiled binaries
 *.o
 *.a
