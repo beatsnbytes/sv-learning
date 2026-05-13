@@ -14,6 +14,12 @@ sim:
 	./obj_dir/$(TOP)
 	gtkwave ../sim/$(TOP).vcd
 
+synth:
+	yosys -p "read_verilog -sv $(RTL_DIR)/$(MODULE).sv; \
+		synth -top $(MODULE); \
+		write_verilog ../sim/$(MODULE)_synth.v; \
+		stat"
+
 clean:
 	rm -rf obj_dir
 	rm -f sim/*.vcd
