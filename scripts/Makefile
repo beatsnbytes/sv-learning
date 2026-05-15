@@ -11,7 +11,7 @@ sim:
 		-o $(TOP) \
 		$(RTL_DIR)/*.sv $(TB_DIR)/$(TOP).sv \
 		--top-module $(TOP)
-	./obj_dir/$(TOP)
+	./obj_dir/$(TOP) +verilator+seed+$(shell data +%s)
 	gtkwave ../sim/$(TOP).vcd
 
 synth:
