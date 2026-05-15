@@ -138,3 +138,19 @@ module fifo_rand_tb;
     end
         
 endmodule
+
+// Bind assertions to DUT - attaches without modifying the RTL
+bind fifo fifo_assertions #(
+    .DATA_WIDTH(DATA_WIDTH),
+    .DEPTH(DEPTH)
+) fifo_assertions_inst (
+    .clk(clk),
+    .rst(rst),
+    .wr_en(wr_en),
+    .rd_en(rd_en),
+    .wr_data(wr_data),
+    .rd_data(rd_data),
+    .full(full),
+    .empty(empty),
+    .count(count)
+);
