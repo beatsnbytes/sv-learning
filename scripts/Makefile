@@ -5,11 +5,12 @@
 TOP ?= and_gate_tb
 RTL_DIR = ../rtl
 TB_DIR = ../tb
+TB_ASSERT_DIR = ../tb/assertions
 
 sim:
 	verilator --binary --sv --trace \
 		-o $(TOP) \
-		$(RTL_DIR)/*.sv $(TB_DIR)/$(TOP).sv \
+		$(RTL_DIR)/*.sv $(TB_DIR)/$(TOP).sv $(TB_ASSERT_DIR)/*.sv \
 		--top-module $(TOP)
 	./obj_dir/$(TOP) +verilator+seed+$(shell data +%s)
 	gtkwave ../sim/$(TOP).vcd
