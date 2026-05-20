@@ -26,6 +26,8 @@ module fifo #(
 
     assign full    = (count == DEPTH_VAL);
     assign empty   = (count == 0);
+
+    // Combinational read - data available same cycle as rd_en
     assign rd_data = mem[rd_ptr];
 
     // Write logic

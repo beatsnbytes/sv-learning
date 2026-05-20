@@ -52,6 +52,7 @@ module fifo_rand_tb;
     // Reference model - software FIFO using a queue
     logic [DATA_WIDTH-1 :0] ref_model[$]; // SystemVerilog queue
     logic [DATA_WIDTH-1 :0] expected_data;
+    logic [DATA_WIDTH-1 :0] sampled_rd_data;
     logic [DATA_WIDTH -1 :0] prev_rd_data;
     int pass_count, fail_count;
 
@@ -63,22 +64,30 @@ module fifo_rand_tb;
         do_write = txn.wr_en && !full;
         do_read = txn.rd_en && !empty;
 
-        prev_rd_data = rd_data; // capture before the clock edge
-
         //Drive DUT 
         wr_en = txn.wr_en;
         rd_en = txn.rd_en;
         wr_data = txn.wr_data;
-        @(posedge clk); #1;
+
+        // Sample rd_data NOW — before clock edge advances rd_ptr
+        sampled_rd_data = rd_data;
+
+
+        // For combinational read - rd_data valid before clock edge
+        // pop before push for simultaneous rw
+        if (do_read && ref_model.size() > 0)
+            expected_data = ref_model.pop_front();
 
         // Update reference model
         if (do_write)
             ref_model.push_back(txn.wr_data);
 
+        @(posedge clk); #1;
+
+
         if (do_read) begin
-            expected_data = ref_model.pop_front();
             // Check DUT output against reference
-            if (rd_data !== expected_data) begin
+            if (sampled_rd_data !== expected_data) begin
                 $display("FAIL t=%0t | expected=%h got=%h",
                 $time, expected_data, rd_data);
                 fail_count++;
@@ -86,6 +95,8 @@ module fifo_rand_tb;
                 pass_count++;
             end
         end
+
+
 
         // Check idle - nothing should change
         if (!do_write && !do_read) begin
@@ -97,6 +108,8 @@ module fifo_rand_tb;
                 pass_count++;
             end
         end
+
+        prev_rd_data = rd_data;
 
         // Clear inputs
         wr_en = 0;

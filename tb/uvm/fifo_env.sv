@@ -1,5 +1,5 @@
 // fifo_env.sv
-// Top level UVM environment
+// Top level UVM environment - instantiates and connects agent & scorebord
 // Week 8 — UVM environment class
 
 class fifo_env;

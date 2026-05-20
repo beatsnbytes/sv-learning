@@ -24,7 +24,7 @@ class fifo_driver;
             // Clear signals after the clock edge
             vif.wr_en = 1'b0; 
             vif.rd_en = 1'b0;
-
+            // Respond back to the sequencer
             rsp_mbx.put(item); 
         end
     endtask

@@ -23,6 +23,9 @@ class fifo_monitor;
                 item.rd_en   = do_read;
                 item.wr_data = vif.wr_data;
 
+                // Sample before rd_ptr advances
+                item.rd_data = vif.rd_data;
+
                 // Pop before push for simultaneous rw
                 if (do_read && ref_queue.size() > 0)
                     item.expected_data = ref_queue.pop_front();
@@ -30,9 +33,7 @@ class fifo_monitor;
                 if (do_write)
                     ref_queue.push_back(vif.wr_data);
 
-                // Wait #1 for combinational rd_data to settle
                 #1;
-                item.rd_data = vif.rd_data;
                 mbx.put(item);
             end
         end
