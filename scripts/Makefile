@@ -6,6 +6,7 @@ TOP ?= and_gate_tb
 RTL_DIR = ../rtl
 TB_DIR = ../tb
 TB_ASSERT_DIR = ../tb/assertions
+UVM_DIR = ../tb/uvm
 
 sim:
 	verilator --binary --sv --trace \
@@ -20,6 +21,14 @@ synth:
 		synth -top $(MODULE); \
 		write_verilog ../sim/$(MODULE)_synth.v; \
 		stat"
+
+uvm:
+	verilator --binary --sv --trace \
+		-o fifo_test \
+		-I$(UVM_DIR) \
+		$(RTL_DIR)/*.sv $(UVM_DIR)/$(TOP)_if.sv $(UVM_DIR)/$(TOP)_test.sv \
+		--top-module $(TOP)_test
+	./obj_dir/$(TOP)_test +verilator+seed+$(shell date +%s)
 
 clean:
 	rm -rf obj_dir

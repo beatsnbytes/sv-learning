@@ -8,10 +8,10 @@ class FifoTransaction;
     rand logic rd_en;
     rand logic [7:0] wr_data;
 
-    // // Constraint: at least one operation per transaction
-    // constraint at_least_one_op {
-    //     wr_en || rd_en;
-    // }
+    // Constraint: at least one operation per transaction
+    constraint at_least_one_op {
+        wr_en || rd_en;
+    }
 
     // Constraint: data is never zero (to make mismatches obvious)
     constraint nonzero_data {
