@@ -45,14 +45,16 @@ module riscv_regfile_tb;
 
     wr_en = 1'b0;
 
-    rs1_addr = 5'b00001;;
+    rs1_addr = 5'b00001; 
+    #1;
     if (rs1_data != 32'hCAFEBABE) begin
         $display(" ERROR in rs1 read. Expected 0xCAFEBABE got %h", rs1_data);
         fail_count++;       
     end else begin
         pass_count++;
     end
-    rs2_addr = 5'b00001;;
+    rs2_addr = 5'b00001;
+    #1;
     if (rs2_data != 32'hCAFEBABE) begin 
         $display(" ERROR in rs2 read. Expected 0xCAFEBABE got %h", rs2_data);
         fail_count++;
@@ -100,6 +102,7 @@ module riscv_regfile_tb;
     wr_en = 1'b0;
 
     rs1_addr = 5'b00001;
+    #1;
     if (rs1_data != 32'hCAFEBABE) begin
         $display(" ERROR in rs1 read. Expected 0xCAFEBABE got %h", rs1_data);
         fail_count++;       
@@ -108,6 +111,7 @@ module riscv_regfile_tb;
     end
 
     rs2_addr = 5'b00010;
+    #1;
     if (rs2_data != 32'hDEADBEEF) begin
         $display(" ERROR in rs2 read. Expected 0xDEADBEEF got %h", rs2_data);
         fail_count++;       
@@ -118,6 +122,7 @@ module riscv_regfile_tb;
     @(posedge clk); #1;
 
     rs1_addr = 5'b00011;
+    #1;
     if (rs1_data != 32'hCAFE0001) begin
         $display(" ERROR in rs1 read. Expected 0xCAFE0001 got %h", rs1_data);
         fail_count++;       
@@ -126,6 +131,7 @@ module riscv_regfile_tb;
     end
 
     rs2_addr = 5'b00100;
+    #1;
     if (rs2_data != 32'hDEAD0001) begin
         $display(" ERROR in rs2 read. Expected 0xDEAD0001 got %h", rs2_data);
         fail_count++;       
@@ -136,6 +142,7 @@ module riscv_regfile_tb;
     @(posedge clk); #1;
 
     rs1_addr = 5'b00101;
+    #1;
     if (rs1_data != 32'hCAFE0002) begin
         $display(" ERROR in rs1 read. Expected 0xCAFE0002 got %h", rs1_data);
         fail_count++;       
@@ -144,6 +151,7 @@ module riscv_regfile_tb;
     end
 
     rs2_addr = 5'b00110;
+    #1;
     if (rs2_data != 32'hDEAD0002) begin
         $display(" ERROR in rs2 read. Expected 0xDEAD0002 got %h", rs2_data);
         fail_count++;       
@@ -163,6 +171,7 @@ module riscv_regfile_tb;
     @(posedge clk); #1;
 
     rs1_addr = 5'b00000;
+    #1;
     if (rs1_data != 32'h0) begin
         $display(" ERROR in x0 read. Expected zero got %h", rs1_data);
         fail_count++;       
@@ -176,6 +185,7 @@ module riscv_regfile_tb;
 
     // Test 4 - Read x0 directly - verify zero
     rs1_addr = 5'b00000;
+    #1;
     if (rs1_data != 32'h0) begin
         $display(" ERROR in x0 read. Expected zero got %h", rs1_data);
         fail_count++;       
@@ -195,6 +205,7 @@ module riscv_regfile_tb;
    @(posedge clk); #1;
 
     rs1_addr = 5'b00010;
+    #1;
     if (rs1_data != 32'hDEADBEEF) begin
         $display(" ERROR in x2 read. Expected 0xDEADBEEF got %h", rs1_data);
         fail_count++;       
@@ -207,6 +218,7 @@ module riscv_regfile_tb;
 
     // Test 4 - Read x0 directly - verify zero
     rs1_addr = 5'b00000;
+    #1;
     if (rs1_data != 32'h0) begin
         $display(" ERROR in x0 read. Expected zero got %h", rs1_data);
         fail_count++;       
