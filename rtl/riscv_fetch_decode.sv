@@ -31,10 +31,10 @@ module riscv_fetch_decode (
     logic [2:0] func3;
     logic [6:0] func7;
 
+    assign instr = imem[pc[9:2]];
     assign opcode = instr[6:0];
     assign func3 = instr[14:12];
     assign func7 = instr[31:25];
-    assign instr = imem[pc[9:2]];
     assign rs1_addr = instr[19:15];
     assign rs2_addr = instr[24:20];
     assign rd_addr = instr[11:7];
