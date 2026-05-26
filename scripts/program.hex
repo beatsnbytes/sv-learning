@@ -1,0 +1,15 @@
+// program.hex
+// Simple 4 intruction program
+
+
+// ADDI x1, x0, 5     — load 5 into x1 --> 00500093
+00500093
+
+// ADDI x2, x0, 10    — load 10 into x2 --> 00A00113
+00A00113
+
+// ADD  x3, x1, x2    — x3 = x1 + x2 = 15 --> 002081B3
+002081B3
+
+// ADD  x4, x3, x1    — x4 = x3 + x1 = 20 --> 00308233
+00308233
