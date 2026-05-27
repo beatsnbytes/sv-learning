@@ -20,6 +20,13 @@ module riscv_cpu (
     logic [2:0] func3;
     logic branch;
 
+    logic mem_read, mem_write, mem_to_reg;
+    logic [31:0] dmem [255:0]; // 1KB data memory
+    logic [31:0] mem_data; // Data read from memory
+    logic [31:0] wb_data; // writeback data - ALU or memory
+
+    logic [31:0] rs2_data;
+
 
     assign pc_src = branch && ((func3 == 3'b000 && zero) || (func3 == 3'b001 && !zero));
 
@@ -30,6 +37,19 @@ module riscv_cpu (
             pc <= pc_src ? (pc + imm) : (pc + 32'd4);
         end
         
+    end
+
+    // LOAD - combinational read from the dmem
+    assign mem_data = dmem[alu_result[9:2]];
+
+    // Writeback MUX
+    assign wb_data = mem_to_reg ? mem_data : alu_result;
+
+    // SW - synchronous write
+    always_ff @(posedge clk) begin
+        if (mem_write) begin
+            dmem[alu_result[9:2]] <= rs2_data;
+        end    
     end
 
     riscv_fetch_decode riscv_fetch_decode_inst(
@@ -45,7 +65,10 @@ module riscv_cpu (
         .instr(instr),
         .alu_src(alu_src),
         .branch(branch),
-        .func3(func3)
+        .func3(func3),
+        .mem_read(mem_read),
+        .mem_write(mem_write),
+        .mem_to_reg(mem_to_reg)
     );
 
     riscv_execute riscv_execute_inst (
@@ -58,8 +81,10 @@ module riscv_cpu (
         .alu_src(alu_src),
         .alu_op(alu_op),
         .imm(imm),
+        .wb_data(wb_data),
         .alu_result(alu_result),
-        .zero(zero)
+        .zero(zero),
+        .rs2_data(rs2_data)
     );
 
 endmodule

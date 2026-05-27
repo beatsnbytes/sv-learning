@@ -15,7 +15,11 @@ module riscv_fetch_decode (
     output logic [31:0] instr,
     output logic alu_src, // 0 = use rs2, 1 use imm
     output logic branch,
-    output logic [2:0] func3
+    output logic [2:0] func3,
+    // Output signals from LW/SW instr
+    output logic mem_read, 
+    output logic mem_write,
+    output logic mem_to_reg // 0 = ALU_RESULT, 1 = memory data
 );
 
     logic [31:0] imem [255:0]; // The 1KB instruction memory
@@ -39,6 +43,10 @@ module riscv_fetch_decode (
         imm = 32'b0;
         alu_src = 1'b0; // Get value from rs2
         branch = 1'b0;
+        // Default signals for data memory
+        mem_read = 1'b0;
+        mem_write = 1'b0;
+        mem_to_reg = 1'b0;
         
 
         case (opcode) 
@@ -91,10 +99,26 @@ module riscv_fetch_decode (
             end
             // 7'b1100011 B-Type instructions BEQ, BNE
             7'b1100011 : begin
-                alu_src = 1'b0;
+                // alu_src = 1'b0;
                 imm = { {20{instr[31]}}, instr[7], instr[30:25], instr[11:8], 1'b0};
                 branch = 1'b1;
                 alu_op = 4'b0001; // SUB  rs1 - rs2, check zero flag
+            end
+            // 7'b0000011 LW
+            7'b0000011 : begin
+                mem_read = 1'b1;
+                reg_wr_en = 1'b1;
+                mem_to_reg = 1'b1;
+                imm = {{20{instr[31]}}, instr[31:20]}; 
+                alu_src = 1'b1;
+                // alu_op is 4'b0000 ADD as the default case
+            end
+            // 7'b0100011 SW
+            7'b0100011 : begin
+                mem_write = 1'b1;
+                imm = {{20{instr[31]}}, instr[31:25], instr[11:7]};
+                alu_src = 1'b1;
+                // alu_op is 4'b0000 ADD as the default case
             end
             default : ; // All signals already set by the top level default
         endcase
