@@ -5,7 +5,7 @@
 module riscv_fetch_decode (
     input logic clk,
     input logic rst,
-    output logic [31:0] pc,
+    input logic [31:0] pc,
     output logic [4:0] rs1_addr,
     output logic [4:0] rs2_addr,
     output logic [4:0] rd_addr,
@@ -13,22 +13,15 @@ module riscv_fetch_decode (
     output logic [3:0] alu_op,
     output logic reg_wr_en,
     output logic [31:0] instr,
-    output logic alu_src // 0 = use rs2, 1 use imm
+    output logic alu_src, // 0 = use rs2, 1 use imm
+    output logic branch,
+    output logic [2:0] func3
 );
 
     logic [31:0] imem [255:0]; // The 1KB instruction memory
     initial $readmemh("program.hex", imem); // Reading the instructions from a hex file
 
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            pc <= 32'd0;
-        end else begin
-            pc <= pc + 32'd4;
-        end
-    end
-
     logic [6:0] opcode;
-    logic [2:0] func3;
     logic [6:0] func7;
 
     assign instr = imem[pc[9:2]];
@@ -45,6 +38,8 @@ module riscv_fetch_decode (
         reg_wr_en = 1'b0;
         imm = 32'b0;
         alu_src = 1'b0; // Get value from rs2
+        branch = 1'b0;
+        
 
         case (opcode) 
             // 7'b0110011 — R-type  (ADD, SUB, AND, OR, XOR, SLL, SRL, SRA, SLT, SLTU)
@@ -93,6 +88,13 @@ module riscv_fetch_decode (
                     // ANDI
                     3'b111 : alu_op = 4'b0010;    
                 endcase
+            end
+            // 7'b1100011 B-Type instructions BEQ, BNE
+            7'b1100011 : begin
+                alu_src = 1'b0;
+                imm = { {20{instr[31]}}, instr[7], instr[30:25], instr[11:8], 1'b0};
+                branch = 1'b1;
+                alu_op = 4'b0001; // SUB  rs1 - rs2, check zero flag
             end
             default : ; // All signals already set by the top level default
         endcase
