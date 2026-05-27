@@ -13,14 +13,15 @@ module riscv_execute (
     input logic alu_src,
     input logic [3:0] alu_op,
     input logic [31:0] imm,
+    input logic [31:0] wb_data,
     // From the ALU
     output logic [31:0] alu_result,
-    output logic zero
+    output logic zero,
+    output logic [31:0] rs2_data
 );
 
     // From the regfile
     logic [31:0] rs1_data;
-    logic [31:0] rs2_data;
     logic [31:0] rs2_imm;
 
 
@@ -30,7 +31,7 @@ module riscv_execute (
         .rs1_addr(rs1_addr), // Read port 1 address
         .rs2_addr(rs2_addr), // Read port 2 address
         .rd_addr(rd_addr), // Write address
-        .rd_data(alu_result), // Write data
+        .rd_data(wb_data), // Write data
         .rs1_data(rs1_data), // Read port 1 data
         .rs2_data(rs2_data) // Read port 2 data
     );
