@@ -15,10 +15,10 @@ module riscv_regfile(
 
     logic [31:0] regs [31:0]; // 32-bit wide - 32 entries register file
 
-    // Read block
-    always_comb begin 
-       rs1_data = (rs1_addr == 0) ? 0 : regs[rs1_addr];
-       rs2_data = (rs2_addr == 0) ? 0 : regs[rs2_addr];        
+    // Read combinational block
+    always_comb begin
+        rs1_data = (rs1_addr == 0) ? 0 : regs[rs1_addr];
+        rs2_data = (rs2_addr == 0) ? 0 : regs[rs2_addr];
     end
 
     // Write block

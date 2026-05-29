@@ -27,8 +27,16 @@
 //SW   x1, 0(x2)     — store 42 to mem[100]
 //LW   x3, 0(x2)     — load from mem[100] into x3
 //ADDI x4, x3, 1     - Expose the x3 value to verify success
-02A00093
-06400113
-00112023
-00012183
-00118213
+//02A00093
+//06400113
+//00112023
+//00012183
+//00118213
+
+//Hazard program
+//ADDI x1, x0, 5     — 00500093
+//ADD  x2, x1, x1    — 00108133
+//ADD  x3, x2, x2    — 00210133
+00500093
+00108133
+00210133

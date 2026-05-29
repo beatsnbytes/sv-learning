@@ -35,7 +35,7 @@ module riscv_cpu_tb;
     end
 
     initial begin
-        $monitor("time=%d | pc=%h | alu_result=%h | zero=%b",
+        $monitor("time=%2t pc=%h | alu_result=%h | zero=%b",
         $time, pc, alu_result, zero);
     end
 
