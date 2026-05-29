@@ -37,6 +37,9 @@ module riscv_cpu (
     logic id_ex_mem_read;
     logic id_ex_mem_write;
     logic id_ex_mem_to_reg;
+    logic id_ex_branch;
+    logic [2:0] id_ex_func3;
+    logic [31:0] id_ex_pc;
 
     logic fwd_a, fwd_b;
 
@@ -45,20 +48,43 @@ module riscv_cpu (
     logic [4:0] ex_wb_rd_addr;
     logic ex_wb_reg_wr_en;
 
+    logic branch_stall;
+
     // Combinational logic for the source of the pc. Either from branch instr or simple pc+4
-    assign pc_src = branch && ((func3 == 3'b000 && zero) || (func3 == 3'b001 && !zero));
+    assign pc_src = id_ex_branch && ((id_ex_func3 == 3'b000 && zero) || (id_ex_func3 == 3'b001 && !zero));
+
+    always_ff @(posedge clk) begin
+        branch_stall <= pc_src;
+    end
 
     // Compute next pc
     always_ff @(posedge clk) begin
         if (rst) begin
             pc <= 32'd0;
         end else begin
-            pc <= pc_src ? (pc + imm) : (pc + 32'd4);
+            pc <= pc_src ? (id_ex_pc -32'd4 + id_ex_imm) : (pc + 32'd4);
         end
     end
 
+
+    // Compute next pc
     always_ff @(posedge clk) begin
-        if(rst) begin
+        if (rst) begin
+            pc <= 32'd0;
+        end else if (pc_src) begin
+            pc <= id_ex_pc -32'd4 + id_ex_imm;
+        end else if (branch_stall) begin
+            pc <= pc;
+        end else begin
+            pc <= pc + 32'd4;
+        end
+    end
+
+    
+
+
+    always_ff @(posedge clk) begin
+        if(rst || pc_src) begin
             id_ex_rs1_addr <= 5'b0;
             id_ex_rs2_addr <= 5'b0;
             id_ex_rd_addr <= 5'b0;
@@ -69,6 +95,21 @@ module riscv_cpu (
             id_ex_mem_read <= 1'b0;
             id_ex_mem_write  <= 1'b0;
             id_ex_mem_to_reg <= 1'b0;
+            id_ex_branch <= 1'b0;
+            id_ex_func3 <= 3'b0;
+        end else if (branch_stall) begin
+            id_ex_rs1_addr <= 5'b0;
+            id_ex_rs2_addr <= 5'b0;
+            id_ex_rd_addr <= 5'b0;
+            id_ex_imm <= 32'b0;
+            id_ex_alu_op <= 4'b0;
+            id_ex_reg_wr_en <= 1'b0;
+            id_ex_alu_src <= 1'b0;
+            id_ex_mem_read <= 1'b0;
+            id_ex_mem_write  <= 1'b0;
+            id_ex_mem_to_reg <= 1'b0;
+            id_ex_branch <= 1'b0;
+            id_ex_func3 <= 3'b0; 
         end else begin
             id_ex_rs1_addr <= rs1_addr;
             id_ex_rs2_addr <= rs2_addr;
@@ -80,6 +121,9 @@ module riscv_cpu (
             id_ex_mem_read <= mem_read;
             id_ex_mem_write  <= mem_write;
             id_ex_mem_to_reg <= mem_to_reg;
+            id_ex_branch <= branch;
+            id_ex_func3 <= func3;
+            id_ex_pc <= pc;
         end
     end
 
@@ -109,7 +153,7 @@ module riscv_cpu (
             ex_wb_alu_result <= 32'b0;
             ex_wb_mem_to_reg <= 1'b0;  
             ex_wb_rd_addr <= 5'b0;
-            ex_wb_reg_wr_en <= 1'b0;          
+            ex_wb_reg_wr_en <= 1'b0;       
         end else begin
             ex_wb_alu_result <= alu_result;
             ex_wb_mem_to_reg <= id_ex_mem_to_reg;
@@ -153,6 +197,8 @@ module riscv_cpu (
         .wb_data(wb_data),
         .fwd_a(fwd_a),
         .fwd_b(fwd_b),
+        .wb_rd_addr(ex_wb_rd_addr),
+        .wb_reg_wr_en(ex_wb_reg_wr_en),
         .alu_result(alu_result),
         .zero(zero),
         .rs2_data(rs2_data)

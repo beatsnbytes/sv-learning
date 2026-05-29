@@ -16,6 +16,8 @@ module riscv_execute (
     input logic [31:0] wb_data,
     input logic fwd_a, 
     input logic fwd_b,
+    input logic [4:0] wb_rd_addr,
+    input logic wb_reg_wr_en, 
     // From the ALU
     output logic [31:0] alu_result,
     output logic zero,
@@ -31,10 +33,10 @@ module riscv_execute (
 
     riscv_regfile riscv_regfile_inst(
         .clk(clk),
-        .wr_en(reg_wr_en),
+        .wr_en(wb_reg_wr_en),
         .rs1_addr(rs1_addr), // Read port 1 address
         .rs2_addr(rs2_addr), // Read port 2 address
-        .rd_addr(rd_addr), // Write address
+        .rd_addr(wb_rd_addr), // Write address
         .rd_data(wb_data), // Write data
         .rs1_data(rs1_data), // Read port 1 data
         .rs2_data(rs2_data) // Read port 2 data
