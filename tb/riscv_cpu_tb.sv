@@ -29,13 +29,13 @@ module riscv_cpu_tb;
         rst = 1'b0;
 
         // Wait enough cycles to see the output of the alu
-        repeat(20) @(posedge clk); #1;
+        repeat(40) @(posedge clk); #1;
 
         $finish;
     end
 
     initial begin
-        $monitor("time=%d | pc=%h | alu_result=%h | zero=%b",
+        $monitor("time=%2t pc=%h | alu_result=%h | zero=%b",
         $time, pc, alu_result, zero);
     end
 
