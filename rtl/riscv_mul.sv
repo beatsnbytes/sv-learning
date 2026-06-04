@@ -8,24 +8,26 @@ module riscv_mul(
     input logic start,
     input logic [31:0] op_a,
     input logic [31:0] op_b,
-    input logic [2:0] op,
+    input logic [3:0] op,
     output logic [31:0] result,
-    output logic done
+    output logic done,
+    output logic busy
 );
 
     logic [5:0] bit_idx; // To index 32 bit positions
     logic [31:0] op_a_latched, op_b_latched;
-    logic [63:0] op_a_shifted;
+    logic [3:0] op_latched;
     logic [63:0] running_total;
-    logic busy;
 
     always_comb begin
-        case (op)
-            3'b000: result = running_total[31:0];
-            3'b001: result = running_total[63:32];
+        case (op_latched)
+            4'b1010: result = running_total[31:0];
+            4'b1011: result = running_total[63:32];
             default: result = 32'b0;
         endcase
     end
+
+
 
     always_ff @(posedge clk) begin
         done <= 1'b0;
@@ -36,23 +38,23 @@ module riscv_mul(
             running_total <= 64'b0;
             op_a_latched <= 32'b0;
             op_b_latched <= 32'b0;
-            op_a_shifted <= 64'b0;
+            op_latched <= 4'b0;
+        end else if (busy && (bit_idx != 6'd32)) begin 
+            // Shift and add multiplier
+            bit_idx <= bit_idx + 1;
+            running_total <= op_b_latched[bit_idx[4:0]] ? (running_total + (64'(op_a_latched) << bit_idx[4:0])) : running_total;
+        end else if (busy && (bit_idx == 6'd32)) begin
+            done <= 1'b1;
+            busy <= 1'b0;
         end else if (start) begin
             // Latch the input operands
             busy <= 1'b1;
             op_a_latched <= op_a;
             op_b_latched <= op_b;
+            op_latched <= op;
             bit_idx <= 6'b0;
             running_total <= 64'b0;
-        end else if (busy && (bit_idx != 6'd32)) begin 
-            // Shift and add multiplier
-            bit_idx <= bit_idx + 1;
-            op_a_shifted <= 64'(op_a_latched) << bit_idx;
-            running_total <= op_b_latched[bit_idx[4:0]] ? (running_total + op_a_shifted) : running_total;
-        end else if (busy && (bit_idx == 6'd32)) begin
-            done <= 1'b1;
-            busy <= 1'b0;
-        end
+        end 
     end
 
 endmodule

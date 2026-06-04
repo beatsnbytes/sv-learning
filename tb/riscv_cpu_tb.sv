@@ -5,14 +5,14 @@
 module riscv_cpu_tb;
 
     logic clk, rst;
-    logic [31:0] pc, alu_result;
+    logic [31:0] pc, ex_result;
     logic zero;
 
     riscv_cpu dut (
     .clk(clk),
     .rst(rst),
     .pc(pc),
-    .alu_result(alu_result),
+    .ex_result(ex_result),
     .zero(zero)
     );
 
@@ -29,14 +29,14 @@ module riscv_cpu_tb;
         rst = 1'b0;
 
         // Wait enough cycles to see the output of the alu
-        repeat(40) @(posedge clk); #1;
+        repeat(200) @(posedge clk); #1;
 
         $finish;
     end
 
     initial begin
-        $monitor("time=%2t pc=%h | alu_result=%h | zero=%b",
-        $time, pc, alu_result, zero);
+        $monitor("time=%2t pc=%h | ex_result=%h | zero=%b",
+        $time, pc, ex_result, zero);
     end
 
 endmodule
