@@ -11,17 +11,20 @@ module riscv_execute (
     input logic [4:0] rd_addr,
     input logic reg_wr_en,
     input logic alu_src,
-    input logic [3:0] alu_op,
+    input logic [3:0] ex_op,
     input logic [31:0] imm,
     input logic [31:0] wb_data,
     input logic fwd_a, 
     input logic fwd_b,
     input logic [4:0] wb_rd_addr,
     input logic wb_reg_wr_en, 
+    input logic mul_start,
     // From the ALU
-    output logic [31:0] alu_result,
+    output logic [31:0] ex_result,
     output logic zero,
-    output logic [31:0] rs2_data
+    output logic [31:0] rs2_data,
+    output logic mul_done,
+    output logic mul_busy
 );
 
     // From the regfile
@@ -29,6 +32,10 @@ module riscv_execute (
     logic [31:0] rs2_imm;
 
     logic [31:0] fwd_rs1_data, fwd_rs2_data;
+    logic [31:0] mul_result;
+    logic [31:0] alu_result;
+    logic [31:0] mul_result_latched;
+    logic result_src; // Mux signal for selecting mul or alu result
 
 
     riscv_regfile riscv_regfile_inst(
@@ -51,12 +58,41 @@ module riscv_execute (
     // MUX selecting between the immediate and the fwd_rs2_data in case of I-TYPE
     assign rs2_imm = alu_src ? imm : fwd_rs2_data ;
 
+    assign ex_result = result_src ? mul_result_latched : alu_result;
+
+    // register to latch mul result
+    always_ff @(posedge clk) begin
+        if (rst) begin
+           mul_result_latched <= 32'b0;
+           result_src <= 1'b0;
+        end else if (mul_done) begin
+            mul_result_latched <= mul_result;
+            result_src <= mul_done;
+        end else begin
+            result_src <= 1'b0;
+        end
+    end
+
+
+
     riscv_alu riscv_alu_inst(
-        .op(alu_op), // Opcode for the operation to be performed
+        .op(ex_op), // Opcode for the operation to be performed
         .a(fwd_rs1_data), // First operand
         .b(rs2_imm), // Second operand
         .result(alu_result), 
         .zero(zero) // 1-bit flag - High when result==0 - Used by branch insn
+    );
+
+    riscv_mul riscv_mul_inst(
+        .clk(clk),
+        .rst(rst),
+        .start(mul_start),
+        .op_a(fwd_rs1_data),
+        .op_b(rs2_imm),
+        .op(ex_op),
+        .result(mul_result),
+        .done(mul_done),
+        .busy(mul_busy)
     );
 
 endmodule
