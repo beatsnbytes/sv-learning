@@ -19,35 +19,31 @@ module riscv_execute (
     input logic [4:0] wb_rd_addr,
     input logic wb_reg_wr_en, 
     input logic mul_start,
-    // From the ALU
+    // CSR-related
+    input logic [31:0] csr_rd_data,
+    input logic csr_rd_en, 
+    input logic csr_rw, 
+    // ALU-related
     output logic [31:0] ex_result,
     output logic zero,
     output logic [31:0] rs2_data,
     output logic mul_done,
-    output logic mul_busy
+    output logic mul_busy,
+
+    output logic [31:0] csr_wr_data
 );
 
     // From the regfile
     logic [31:0] rs1_data;
     logic [31:0] rs2_imm;
 
-    logic [31:0] fwd_rs1_data, fwd_rs2_data;
+    logic [31:0] fwd_rs1_data;
+    logic [31:0] fwd_rs2_data;
     logic [31:0] mul_result;
     logic [31:0] alu_result;
     logic [31:0] mul_result_latched;
     logic result_src; // Mux signal for selecting mul or alu result
 
-
-    riscv_regfile riscv_regfile_inst(
-        .clk(clk),
-        .wr_en(wb_reg_wr_en),
-        .rs1_addr(rs1_addr), // Read port 1 address
-        .rs2_addr(rs2_addr), // Read port 2 address
-        .rd_addr(wb_rd_addr), // Write address
-        .rd_data(wb_data), // Write data
-        .rs1_data(rs1_data), // Read port 1 data
-        .rs2_data(rs2_data) // Read port 2 data
-    );
 
     // MUX forwarding the wb data in rs1 in case of hazard
     assign fwd_rs1_data = fwd_a ? wb_data : rs1_data;
@@ -58,7 +54,8 @@ module riscv_execute (
     // MUX selecting between the immediate and the fwd_rs2_data in case of I-TYPE
     assign rs2_imm = alu_src ? imm : fwd_rs2_data ;
 
-    assign ex_result = result_src ? mul_result_latched : alu_result;
+    // MUX selecting between result from CSR file, multiplier or ALU
+    assign ex_result = csr_rd_en ? csr_rd_data : (result_src ? mul_result_latched : alu_result);
 
     // register to latch mul result
     always_ff @(posedge clk) begin
@@ -73,7 +70,19 @@ module riscv_execute (
         end
     end
 
+    // The data to be written to the CSR address depending on if csrrw or csrrs
+    assign csr_wr_data = csr_rw ? fwd_rs1_data : (fwd_rs1_data | csr_rd_data);
 
+    riscv_regfile riscv_regfile_inst(
+        .clk(clk),
+        .wr_en(wb_reg_wr_en),
+        .rs1_addr(rs1_addr), // Read port 1 address
+        .rs2_addr(rs2_addr), // Read port 2 address
+        .rd_addr(wb_rd_addr), // Write address
+        .rd_data(wb_data), // Write data
+        .rs1_data(rs1_data), // Read port 1 data
+        .rs2_data(rs2_data) // Read port 2 data
+    );
 
     riscv_alu riscv_alu_inst(
         .op(ex_op), // Opcode for the operation to be performed

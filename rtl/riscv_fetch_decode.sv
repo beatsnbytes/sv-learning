@@ -20,7 +20,12 @@ module riscv_fetch_decode (
     output logic mem_read, 
     output logic mem_write,
     output logic mem_to_reg, // 0 = ALU_RESULT, 1 = memory data
-    output logic mul_start
+    output logic mul_start,
+    // Output signals for the CSR file
+    output logic csr_wr_en, 
+    output logic csr_rd_en, 
+    output logic [11:0] csr_addr, 
+    output logic csr_rw
 );
 
     logic [31:0] imem [255:0]; // The 1KB instruction memory
@@ -52,6 +57,11 @@ module riscv_fetch_decode (
         mem_to_reg = 1'b0;
         // Default signals for multiplier
         mul_start = 1'b0;
+        // Default signals for CSR
+        csr_rd_en  = 1'b0;
+        csr_wr_en = 1'b0;
+        csr_addr = 12'b0;
+        csr_rw = 1'b0;
         
 
         case (opcode) 
@@ -145,6 +155,14 @@ module riscv_fetch_decode (
                 imm = {{20{instr[31]}}, instr[31:25], instr[11:7]};
                 alu_src = 1'b1;
                 // ex_op is 4'b0000 ADD as the default case
+            end
+            // CSRRW, CSRRS 
+            7'b1110011: begin
+                csr_rw = (func3 == 3'b001) ? 1'b1 : 1'b0; // Signal that is set when csrrw and unset otherwise
+                csr_wr_en = 1'b1;
+                csr_rd_en = 1'b1;
+                csr_addr = instr[31:20];
+                reg_wr_en = 1'b1;
             end
             default : ; // All signals already set by the top level default
         endcase

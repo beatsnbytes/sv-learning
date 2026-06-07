@@ -43,7 +43,7 @@ module riscv_cpu (
 
     logic fwd_a, fwd_b;
 
-    logic [31:0] ex_wb_alu_result;
+    logic [31:0] ex_wb_ex_result;
     logic ex_wb_mem_to_reg;
     logic [4:0] ex_wb_rd_addr;
     logic ex_wb_reg_wr_en;
@@ -54,6 +54,22 @@ module riscv_cpu (
 
     logic id_ex_mul_start;
     logic real_start;
+
+    // CSR related
+    logic [31:0] csr_wr_data;
+    logic [31:0] csr_rd_data;
+    logic [31:0] ex_wb_csr_wr_data;
+    logic csr_rd_en;
+    logic id_ex_csr_rd_en;
+    logic csr_rw;
+    logic id_ex_csr_rw;
+    logic csr_wr_en;
+    logic id_ex_csr_wr_en;
+    logic ex_wb_csr_wr_en;
+    logic [11:0] csr_addr;
+    logic [1:0] id_ex_csr_addr;
+    logic [1:0] ex_wb_csr_addr;
+    
 
 
     // Pipeline stall for mul result waiting 
@@ -101,7 +117,11 @@ module riscv_cpu (
             id_ex_mem_to_reg <= 1'b0;
             id_ex_branch <= 1'b0;
             id_ex_func3 <= 3'b0;
-        end else if (branch_stall || mul_busy) begin //  || mul_done
+            id_ex_csr_rd_en <= 1'b0;
+            id_ex_csr_wr_en <= 1'b0;
+            id_ex_csr_rw <= 1'b0;
+            id_ex_csr_addr <= 2'b0;
+        end else if (branch_stall || mul_busy) begin
             id_ex_rs1_addr <= 5'b0;
             id_ex_rs2_addr <= 5'b0;
             id_ex_rd_addr <= 5'b0;
@@ -114,6 +134,10 @@ module riscv_cpu (
             id_ex_mem_to_reg <= 1'b0;
             id_ex_branch <= 1'b0;
             id_ex_func3 <= 3'b0; 
+            id_ex_csr_rd_en <= 1'b0;
+            id_ex_csr_wr_en <= 1'b0;
+            id_ex_csr_rw <= 1'b0;
+            id_ex_csr_addr <= 2'b0;
         end else begin
             id_ex_rs1_addr <= rs1_addr;
             id_ex_rs2_addr <= rs2_addr;
@@ -128,14 +152,18 @@ module riscv_cpu (
             id_ex_branch <= branch;
             id_ex_func3 <= func3;
             id_ex_pc <= pc;
+            id_ex_csr_rd_en <= csr_rd_en;
+            id_ex_csr_wr_en <= csr_wr_en;
+            id_ex_csr_rw <= csr_rw;
+            id_ex_csr_addr <= csr_addr[1:0];
         end
     end
 
     // LOAD - combinational read from the dmem
-    assign mem_data = dmem[ex_wb_alu_result[9:2]];
+    assign mem_data = dmem[ex_wb_ex_result[9:2]];
 
     // Writeback MUX
-    assign wb_data = ex_wb_mem_to_reg ? mem_data : ex_wb_alu_result;
+    assign wb_data = ex_wb_mem_to_reg ? mem_data : ex_wb_ex_result;
 
     // SW - synchronous write
     always_ff @(posedge clk) begin
@@ -155,15 +183,21 @@ module riscv_cpu (
     // EX/WB pipeline register
     always_ff @(posedge clk) begin
         if (rst) begin
-            ex_wb_alu_result <= 32'b0;
+            ex_wb_ex_result <= 32'b0;
             ex_wb_mem_to_reg <= 1'b0;  
             ex_wb_rd_addr <= 5'b0;
-            ex_wb_reg_wr_en <= 1'b0;       
+            ex_wb_reg_wr_en <= 1'b0; 
+            ex_wb_csr_wr_data <= 32'b0;
+            ex_wb_csr_wr_en <= 1'b0;
+            ex_wb_csr_addr <= 2'b0;     
         end else begin
-            ex_wb_alu_result <= ex_result;
+            ex_wb_ex_result <= ex_result;
             ex_wb_mem_to_reg <= id_ex_mem_to_reg;
             ex_wb_rd_addr <= id_ex_rd_addr;
             ex_wb_reg_wr_en <= id_ex_reg_wr_en;
+            ex_wb_csr_wr_data <= csr_wr_data;
+            ex_wb_csr_wr_en <= id_ex_csr_wr_en;
+            ex_wb_csr_addr <= id_ex_csr_addr;
         end
 
 
@@ -187,7 +221,26 @@ module riscv_cpu (
         .mem_read(mem_read),
         .mem_write(mem_write),
         .mem_to_reg(mem_to_reg),
-        .mul_start(mul_start)
+        .mul_start(mul_start),
+        .csr_wr_en(csr_wr_en), // To csr regfile directly
+        .csr_rd_en(csr_rd_en), // To execute
+        .csr_addr(csr_addr), // To csr regfile
+        .csr_rw(csr_rw) // to Execute
+    );
+
+    riscv_csr riscv_csr_inst (
+        .clk(clk),
+        // .csr_wr_en(ex_wb_csr_wr_en),
+        .csr_wr_en(id_ex_csr_wr_en),
+        // .csr_wr_addr(ex_wb_csr_addr),
+        .csr_wr_addr(id_ex_csr_addr), 
+        // .csr_wr_data(ex_wb_csr_wr_data),
+        .csr_wr_data(csr_wr_data), // Already registered
+        .csr_rd_addr(id_ex_csr_addr),
+        .hw_wr_en(1'b0),
+        .hw_wr_addr(2'b0),
+        .hw_wr_data(32'b0),
+        .csr_rd_data(csr_rd_data) // Old csr value to get written to rd
     );
 
     riscv_execute riscv_execute_inst (
@@ -210,7 +263,11 @@ module riscv_cpu (
         .zero(zero),
         .rs2_data(rs2_data),
         .mul_done(mul_done),
-        .mul_busy(mul_busy)
+        .mul_busy(mul_busy),
+        .csr_rd_data(csr_rd_data),
+        .csr_rd_en(id_ex_csr_rd_en),
+        .csr_rw(id_ex_csr_rw),
+        .csr_wr_data(csr_wr_data) // The data to be wrtten to the csr
     );
 
 endmodule

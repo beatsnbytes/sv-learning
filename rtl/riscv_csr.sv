@@ -4,10 +4,11 @@
 
 module riscv_csr (
     input logic clk,
-    input logic csr_wr_enable,
-    input logic [1:0] csr_addr, // 2 bits to index 3 registers
+    input logic csr_wr_en,
+    input logic [1:0] csr_wr_addr,
     input logic [31:0] csr_wr_data,
-    input logic hw_wr_enable,
+    input logic [1:0] csr_rd_addr, // 2 bits to index 3 registers
+    input logic hw_wr_en,
     input logic [1:0] hw_wr_addr,
     input logic [31:0] hw_wr_data, // 2 bits to index 3 registers
     output logic [31:0] csr_rd_data
@@ -17,15 +18,15 @@ module riscv_csr (
 
     // Combinational Reads
     always_comb begin 
-        csr_rd_data = csr_regs[csr_addr];
+        csr_rd_data = csr_regs[csr_rd_addr];
     end
 
     // Sequential Writes
     always_ff @(posedge clk) begin
-        if (hw_wr_enable) begin // Priority to hw write
+        if (hw_wr_en) begin // Priority to hw write
             csr_regs[hw_wr_addr] <= hw_wr_data;
-        end else if (csr_wr_enable) begin
-            csr_regs[csr_addr] <= csr_wr_data;            
+        end else if (csr_wr_en) begin
+            csr_regs[csr_wr_addr] <= csr_wr_data;            
         end
     end
 
