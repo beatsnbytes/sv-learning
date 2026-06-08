@@ -1,0 +1,17 @@
+# running in cpu_fwd_formal/src/
+read -define FORMAL
+
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/tb/assertions/cpu_fwd_formal.sv
+prep -top riscv_cpu
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

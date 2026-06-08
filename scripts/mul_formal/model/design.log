@@ -1,0 +1,234 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Executing script file `../model/design.ys' --
+
+1. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_mul'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/tb/assertions/mul_formal.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/tb/assertions/mul_formal.sv' to AST representation.
+Storing AST representation for module `$abstract\mul_formal'.
+Storing AST representation for module `$abstract\mul_formal_props'.
+Successfully finished Verilog frontend.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.2. Executing AST frontend in derive mode using pre-parsed AST for module `\riscv_mul'.
+Generating RTLIL representation for module `\riscv_mul'.
+
+3.2.1. Analyzing design hierarchy..
+Top module:  \riscv_mul
+
+3.2.2. Analyzing design hierarchy..
+Top module:  \riscv_mul
+Removing unused module `$abstract\mul_formal_props'.
+Removing unused module `$abstract\mul_formal'.
+Removing unused module `$abstract\riscv_mul'.
+Removed 3 unused modules.
+
+3.3. Executing PROC pass (convert processes to netlists).
+
+3.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2 in module riscv_mul.
+Marked 1 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$1 in module riscv_mul.
+Removed a total of 0 dead cases.
+
+3.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 1 assignment to connection.
+
+3.3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~5 debug messages>
+
+3.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+     1/7: $0\done[0:0]
+     2/7: $0\running_total[63:0]
+     3/7: $0\op_latched[3:0]
+     4/7: $0\op_b_latched[31:0]
+     5/7: $0\op_a_latched[31:0]
+     6/7: $0\bit_idx[5:0]
+     7/7: $0\busy[0:0]
+Creating decoders for process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$1'.
+     1/1: $1\result[31:0]
+
+3.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\riscv_mul.\result' from process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$1'.
+
+3.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\riscv_mul.\done' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+  created $dff cell `$procdff$91' with positive edge clock.
+Creating register for signal `\riscv_mul.\busy' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+  created $dff cell `$procdff$92' with positive edge clock.
+Creating register for signal `\riscv_mul.\bit_idx' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+  created $dff cell `$procdff$93' with positive edge clock.
+Creating register for signal `\riscv_mul.\op_a_latched' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+  created $dff cell `$procdff$94' with positive edge clock.
+Creating register for signal `\riscv_mul.\op_b_latched' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+  created $dff cell `$procdff$95' with positive edge clock.
+Creating register for signal `\riscv_mul.\op_latched' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+  created $dff cell `$procdff$96' with positive edge clock.
+Creating register for signal `\riscv_mul.\running_total' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+  created $dff cell `$procdff$97' with positive edge clock.
+
+3.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+Removing empty process `riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$2'.
+Found and cleaned up 1 empty switch in `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$1'.
+Removing empty process `riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$1'.
+Cleaned up 5 empty switches.
+
+3.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_mul.
+
+3.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_mul.
+
+3.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_mul..
+Removed 0 unused cells and 37 unused wires.
+<suppressed ~1 debug messages>
+
+3.6. Executing CHECK pass (checking for obvious problems).
+Checking module riscv_mul...
+Found and reported 0 problems.
+
+3.7. Executing OPT pass (performing simple optimizations).
+
+3.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_mul.
+
+3.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\riscv_mul'.
+Removed a total of 0 cells.
+
+3.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \riscv_mul..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~8 debug messages>
+
+3.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \riscv_mul.
+Performed a total of 0 changes.
+
+3.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\riscv_mul'.
+Removed a total of 0 cells.
+
+3.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_mul..
+
+3.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_mul.
+
+3.7.8. Finished OPT passes. (There is nothing left to do.)
+
+3.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 31 bits (of 32) from port B of cell riscv_mul.$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:44$5 ($add).
+Removed top 26 bits (of 32) from port Y of cell riscv_mul.$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:44$5 ($add).
+Removed top 32 bits (of 64) from port A of cell riscv_mul.$shl$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:45$7 ($shl).
+Removed top 26 bits (of 32) from wire riscv_mul.$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:44$5_Y.
+
+3.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_mul..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+3.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.11. Executing OPT pass (performing simple optimizations).
+
+3.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_mul.
+
+3.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\riscv_mul'.
+Removed a total of 0 cells.
+
+3.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_mul..
+
+3.11.4. Finished fast OPT passes.
+
+3.12. Printing statistics.
+
+=== riscv_mul ===
+
+   Number of wires:                 52
+   Number of wire bits:           1007
+   Number of public wires:          14
+   Number of public wire bits:     243
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 46
+     $add                            2
+     $dff                            7
+     $eq                             3
+     $logic_and                      2
+     $mux                           28
+     $ne                             1
+     $pmux                           1
+     $shiftx                         1
+     $shl                            1
+
+3.13. Executing CHECK pass (checking for obvious problems).
+Checking module riscv_mul...
+Found and reported 0 problems.
+
+4. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1. Analyzing design hierarchy..
+Top module:  \riscv_mul
+
+4.2. Analyzing design hierarchy..
+Top module:  \riscv_mul
+Removed 0 unused modules.
+
+5. Executing jny backend.
+
+6. Executing RTLIL backend.
+Output filename: ../model/design.il
+
+End of script. Logfile hash: 2807e0519a, CPU: user 0.23s system 0.03s, MEM: 16.11 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 25% 4x opt_clean (0 sec), 24% 2x check (0 sec), ...

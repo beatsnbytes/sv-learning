@@ -1,0 +1,255 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Executing script file `design_smt2.ys' --
+
+1. Executing RTLIL frontend.
+Input filename: design_prep.il
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \riscv_cpu
+Used module:     \riscv_fetch_decode
+Used module:     \riscv_execute
+Used module:         \riscv_regfile
+Used module:         \riscv_mul
+Used module:         \riscv_alu
+Used module:     \riscv_csr
+
+2.2. Analyzing design hierarchy..
+Top module:  \riscv_cpu
+Used module:     \riscv_fetch_decode
+Used module:     \riscv_execute
+Used module:         \riscv_regfile
+Used module:         \riscv_mul
+Used module:         \riscv_alu
+Used module:     \riscv_csr
+Removed 0 unused modules.
+
+3. Executing FORMALFF pass.
+
+4. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+5. Printing statistics.
+
+=== riscv_regfile ===
+
+   Number of wires:                 26
+   Number of wire bits:            426
+   Number of public wires:           9
+   Number of public wire bits:     114
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 18
+     $anyseq                         4
+     $logic_and                      1
+     $logic_not                      2
+     $mem_v2                         1
+     $mux                            9
+     $reduce_bool                    1
+
+=== riscv_mul ===
+
+   Number of wires:                 53
+   Number of wire bits:           1008
+   Number of public wires:          14
+   Number of public wire bits:     243
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 48
+     $add                            2
+     $anyinit                        7
+     $assume                         1
+     $eq                             3
+     $logic_and                      2
+     $mux                           28
+     $ne                             1
+     $not                            1
+     $pmux                           1
+     $shiftx                         1
+     $shl                            1
+
+=== riscv_fetch_decode ===
+
+   Number of wires:                 58
+   Number of wire bits:            212
+   Number of public wires:          23
+   Number of public wire bits:     156
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 47
+     $anyseq                         4
+     $eq                            15
+     $logic_not                      1
+     $mem_v2                         1
+     $mux                           13
+     $pmux                           7
+     $reduce_or                      6
+
+=== riscv_execute ===
+
+   Number of wires:                 39
+   Number of wire bits:            585
+   Number of public wires:          32
+   Number of public wire bits:     454
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 18
+     $anyinit                        2
+     $assume                         1
+     $mux                           10
+     $not                            1
+     $or                             1
+     riscv_alu                       1
+     riscv_mul                       1
+     riscv_regfile                   1
+
+=== riscv_csr ===
+
+   Number of wires:                 24
+   Number of wire bits:            405
+   Number of public wires:          15
+   Number of public wire bits:     207
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 16
+     $anyseq                         6
+     $mem_v2                         1
+     $mux                            9
+
+=== riscv_cpu ===
+
+   Number of wires:                137
+   Number of wire bits:           1111
+   Number of public wires:          63
+   Number of public wire bits:     586
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                114
+     $add                            2
+     $anyinit                       26
+     $anyseq                         2
+     $assume                         1
+     $eq                             6
+     $logic_and                     11
+     $logic_not                      4
+     $logic_or                       6
+     $mem_v2                         1
+     $mux                           50
+     $not                            1
+     $reduce_bool                    1
+     riscv_csr                       1
+     riscv_execute                   1
+     riscv_fetch_decode              1
+
+=== riscv_alu ===
+
+   Number of wires:                 27
+   Number of wire bits:            433
+   Number of public wires:           5
+   Number of public wire bits:     101
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 24
+     $add                            1
+     $and                            1
+     $eq                             9
+     $logic_not                      2
+     $lt                             2
+     $mux                            2
+     $or                             1
+     $pmux                           1
+     $shl                            1
+     $shr                            1
+     $sshr                           1
+     $sub                            1
+     $xor                            1
+
+=== design hierarchy ===
+
+   riscv_cpu                         1
+     riscv_csr                       1
+     riscv_execute                   1
+       riscv_alu                     1
+       riscv_mul                     1
+       riscv_regfile                 1
+     riscv_fetch_decode              1
+
+   Number of wires:                364
+   Number of wire bits:           4180
+   Number of public wires:         161
+   Number of public wire bits:    1861
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                279
+     $add                            5
+     $and                            1
+     $anyinit                       35
+     $anyseq                        16
+     $assume                         3
+     $eq                            33
+     $logic_and                     14
+     $logic_not                      9
+     $logic_or                       6
+     $lt                             2
+     $mem_v2                         4
+     $mux                          121
+     $ne                             1
+     $not                            3
+     $or                             2
+     $pmux                           9
+     $reduce_bool                    2
+     $reduce_or                      6
+     $shiftx                         1
+     $shl                            2
+     $shr                            1
+     $sshr                           1
+     $sub                            1
+     $xor                            1
+
+6. Executing SMT2 backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module riscv_alu.
+Creating SMT-LIBv2 representation of module riscv_csr.
+Creating SMT-LIBv2 representation of module riscv_fetch_decode.
+Creating SMT-LIBv2 representation of module riscv_mul.
+Creating SMT-LIBv2 representation of module riscv_regfile.
+Creating SMT-LIBv2 representation of module riscv_execute.
+Creating SMT-LIBv2 representation of module riscv_cpu.
+
+End of script. Logfile hash: af2d1a5919, CPU: user 0.11s system 0.02s, MEM: 16.29 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 59% 2x write_smt2 (0 sec), 35% 2x read_rtlil (0 sec), ...

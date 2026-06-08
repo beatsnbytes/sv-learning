@@ -1,0 +1,720 @@
+{
+  "$schema": "https://raw.githubusercontent.com/YosysHQ/yosys/master/misc/jny.schema.json",
+  "generator": "Yosys 0.33 (git sha1 2584903a060)",
+  "version": "0.0.1",
+  "invocation": "write_jny -no-connections ../model/design.json ",
+  "features": ["attributes", "properties"],
+  "modules": [
+      {
+        "name": "riscv_mul",
+        "cell_sorts": [
+          {
+            "type": "$shiftx",
+            "ports": [
+                {
+                  "name": "A",
+                  "direction": "io",
+                  "range": [32, 0]
+                },
+                {
+                  "name": "B",
+                  "direction": "io",
+                  "range": [5, 0]
+                },
+                {
+                  "name": "Y",
+                  "direction": "",
+                  "range": [0, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$shiftx$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$6",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0.0-0.0"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000100000",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000101",
+                    "Y_WIDTH": "00000000000000000000000000000001"
+                  }
+                }
+            ]
+          },
+          {
+            "type": "$mux",
+            "ports": [
+                {
+                  "name": "A",
+                  "direction": "io",
+                  "range": [0, 0]
+                },
+                {
+                  "name": "B",
+                  "direction": "io",
+                  "range": [0, 0]
+                },
+                {
+                  "name": "S",
+                  "direction": "io",
+                  "range": [0, 0]
+                },
+                {
+                  "name": "Y",
+                  "direction": "",
+                  "range": [0, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$procmux$13",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.22-46.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procmux$16",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.22-42.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procmux$19",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.13-34.16|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.9-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procmux$21",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.22-49.27|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000001000000"
+                  }
+                },
+                {
+                  "name": "$procmux$24",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.22-46.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000001000000"
+                  }
+                },
+                {
+                  "name": "$procmux$27",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.22-42.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000001000000"
+                  }
+                },
+                {
+                  "name": "$procmux$30",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.13-34.16|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.9-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000001000000"
+                  }
+                },
+                {
+                  "name": "$procmux$32",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.22-49.27|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000100"
+                  }
+                },
+                {
+                  "name": "$procmux$35",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.22-46.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000100"
+                  }
+                },
+                {
+                  "name": "$procmux$38",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.22-42.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000100"
+                  }
+                },
+                {
+                  "name": "$procmux$41",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.13-34.16|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.9-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000100"
+                  }
+                },
+                {
+                  "name": "$procmux$43",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.22-49.27|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procmux$46",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.22-46.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procmux$49",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.22-42.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procmux$52",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.13-34.16|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.9-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procmux$54",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.22-49.27|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procmux$57",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.22-46.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procmux$60",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.22-42.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procmux$63",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.13-34.16|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.9-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procmux$65",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.22-49.27|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000110"
+                  }
+                },
+                {
+                  "name": "$procmux$68",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.22-46.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000110"
+                  }
+                },
+                {
+                  "name": "$procmux$71",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.22-42.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000110"
+                  }
+                },
+                {
+                  "name": "$procmux$74",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.13-34.16|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.9-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000110"
+                  }
+                },
+                {
+                  "name": "$procmux$76",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.22-49.27|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:49.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procmux$79",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.22-46.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procmux$82",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.22-42.48|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.18-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procmux$85",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.13-34.16|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:34.9-57.12"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$ternary$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:45$9",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:45.30-45.128"
+                  },
+                  "parameters": {
+                    "WIDTH": "00000000000000000000000001000000"
+                  }
+                }
+            ]
+          },
+          {
+            "type": "$dff",
+            "ports": [
+                {
+                  "name": "CLK",
+                  "direction": "io",
+                  "range": [0, 0]
+                },
+                {
+                  "name": "D",
+                  "direction": "io",
+                  "range": [0, 0]
+                },
+                {
+                  "name": "Q",
+                  "direction": "",
+                  "range": [0, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$procdff$91",
+                  "attributes": {
+                    "always_ff": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32.5-58.8"
+                  },
+                  "parameters": {
+                    "CLK_POLARITY": "1",
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procdff$92",
+                  "attributes": {
+                    "always_ff": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32.5-58.8"
+                  },
+                  "parameters": {
+                    "CLK_POLARITY": "1",
+                    "WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procdff$93",
+                  "attributes": {
+                    "always_ff": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32.5-58.8"
+                  },
+                  "parameters": {
+                    "CLK_POLARITY": "1",
+                    "WIDTH": "00000000000000000000000000000110"
+                  }
+                },
+                {
+                  "name": "$procdff$94",
+                  "attributes": {
+                    "always_ff": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32.5-58.8"
+                  },
+                  "parameters": {
+                    "CLK_POLARITY": "1",
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procdff$95",
+                  "attributes": {
+                    "always_ff": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32.5-58.8"
+                  },
+                  "parameters": {
+                    "CLK_POLARITY": "1",
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                },
+                {
+                  "name": "$procdff$96",
+                  "attributes": {
+                    "always_ff": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32.5-58.8"
+                  },
+                  "parameters": {
+                    "CLK_POLARITY": "1",
+                    "WIDTH": "00000000000000000000000000000100"
+                  }
+                },
+                {
+                  "name": "$procdff$97",
+                  "attributes": {
+                    "always_ff": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32.5-58.8"
+                  },
+                  "parameters": {
+                    "CLK_POLARITY": "1",
+                    "WIDTH": "00000000000000000000000001000000"
+                  }
+                }
+            ]
+          },
+          {
+            "type": "$ne",
+            "ports": [
+                {
+                  "name": "A",
+                  "direction": "io",
+                  "range": [6, 0]
+                },
+                {
+                  "name": "B",
+                  "direction": "io",
+                  "range": [6, 0]
+                },
+                {
+                  "name": "Y",
+                  "direction": "",
+                  "range": [0, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$ne$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42$3",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.31-42.47"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000000110",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000110",
+                    "Y_WIDTH": "00000000000000000000000000000001"
+                  }
+                }
+            ]
+          },
+          {
+            "type": "$shl",
+            "ports": [
+                {
+                  "name": "A",
+                  "direction": "io",
+                  "range": [32, 0]
+                },
+                {
+                  "name": "B",
+                  "direction": "io",
+                  "range": [5, 0]
+                },
+                {
+                  "name": "Y",
+                  "direction": "",
+                  "range": [64, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$shl$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:45$7",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:45.77-45.110"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000100000",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000101",
+                    "Y_WIDTH": "00000000000000000000000001000000"
+                  }
+                }
+            ]
+          },
+          {
+            "type": "$logic_and",
+            "ports": [
+                {
+                  "name": "A",
+                  "direction": "io",
+                  "range": [0, 0]
+                },
+                {
+                  "name": "B",
+                  "direction": "io",
+                  "range": [0, 0]
+                },
+                {
+                  "name": "Y",
+                  "direction": "",
+                  "range": [0, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$logic_and$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42$4",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:42.22-42.48"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000000001",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000001",
+                    "Y_WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$logic_and$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46$11",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.22-46.48"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000000001",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000001",
+                    "Y_WIDTH": "00000000000000000000000000000001"
+                  }
+                }
+            ]
+          },
+          {
+            "type": "$eq",
+            "ports": [
+                {
+                  "name": "A",
+                  "direction": "io",
+                  "range": [6, 0]
+                },
+                {
+                  "name": "B",
+                  "direction": "io",
+                  "range": [6, 0]
+                },
+                {
+                  "name": "Y",
+                  "direction": "",
+                  "range": [0, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$eq$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46$10",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:46.31-46.47"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000000110",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000110",
+                    "Y_WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procmux$89_CMP0",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0.0-0.0|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:23.9-27.16"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000000100",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000100",
+                    "Y_WIDTH": "00000000000000000000000000000001"
+                  }
+                },
+                {
+                  "name": "$procmux$90_CMP0",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0.0-0.0|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:23.9-27.16"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000000100",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000100",
+                    "Y_WIDTH": "00000000000000000000000000000001"
+                  }
+                }
+            ]
+          },
+          {
+            "type": "$pmux",
+            "ports": [
+                {
+                  "name": "A",
+                  "direction": "io",
+                  "range": [32, 0]
+                },
+                {
+                  "name": "B",
+                  "direction": "io",
+                  "range": [64, 0]
+                },
+                {
+                  "name": "S",
+                  "direction": "io",
+                  "range": [2, 0]
+                },
+                {
+                  "name": "Y",
+                  "direction": "",
+                  "range": [32, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$procmux$88",
+                  "attributes": {
+                    "full_case": "00000000000000000000000000000001",
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0.0-0.0|/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:23.9-27.16"
+                  },
+                  "parameters": {
+                    "S_WIDTH": "00000000000000000000000000000010",
+                    "WIDTH": "00000000000000000000000000100000"
+                  }
+                }
+            ]
+          },
+          {
+            "type": "$add",
+            "ports": [
+                {
+                  "name": "A",
+                  "direction": "io",
+                  "range": [6, 0]
+                },
+                {
+                  "name": "B",
+                  "direction": "io",
+                  "range": [0, 0]
+                },
+                {
+                  "name": "Y",
+                  "direction": "",
+                  "range": [6, 0]
+                }
+            ],
+            "cells": [
+                {
+                  "name": "$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:44$5",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:44.24-44.35"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000000000110",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000000000001",
+                    "Y_WIDTH": "00000000000000000000000000000110"
+                  }
+                },
+                {
+                  "name": "$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:45$8",
+                  "attributes": {
+                    "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:45.60-45.111"
+                  },
+                  "parameters": {
+                    "A_SIGNED": "00000000000000000000000000000000",
+                    "A_WIDTH": "00000000000000000000000001000000",
+                    "B_SIGNED": "00000000000000000000000000000000",
+                    "B_WIDTH": "00000000000000000000000001000000",
+                    "Y_WIDTH": "00000000000000000000000001000000"
+                  }
+                }
+            ]
+          }
+        ],
+        "attributes": {
+            "hdlname": "\\riscv_mul",
+            "top": "00000000000000000000000000000001",
+            "src": "/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:5.1-60.10"
+        }
+      }
+  ]
+}

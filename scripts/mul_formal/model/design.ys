@@ -1,0 +1,9 @@
+# running in mul_formal/src/
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/tb/assertions/mul_formal.sv
+prep -top riscv_mul
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il
