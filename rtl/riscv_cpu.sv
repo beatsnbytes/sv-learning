@@ -58,6 +58,7 @@ module riscv_cpu (
     // CSR related
     logic [31:0] csr_wr_data;
     logic [31:0] csr_rd_data;
+    logic [31:0] fwd_csr_rd_data;
     logic [31:0] ex_wb_csr_wr_data;
     logic csr_rd_en;
     logic id_ex_csr_rd_en;
@@ -69,6 +70,7 @@ module riscv_cpu (
     logic [11:0] csr_addr;
     logic [1:0] id_ex_csr_addr;
     logic [1:0] ex_wb_csr_addr;
+    logic fwd_csr;
     
 
 
@@ -228,19 +230,23 @@ module riscv_cpu (
         .csr_rw(csr_rw) // to Execute
     );
 
+    // Put here the forwarding logic for the CSR instructions. 
+    // If the instruction in EX stage is writing to CSR and the current instruction is reading from the same CSR, 
+    // then we need to forward the data from EX/WB pipeline register instead of reading from the CSR regfile 
+    // (which will have the old value until the write happens at the end of WB stage)
+    assign fwd_csr = ex_wb_csr_wr_en && (id_ex_csr_addr == ex_wb_csr_addr);
+    assign fwd_csr_rd_data = fwd_csr ? ex_wb_csr_wr_data : csr_rd_data;
+
     riscv_csr riscv_csr_inst (
         .clk(clk),
-        // .csr_wr_en(ex_wb_csr_wr_en),
-        .csr_wr_en(id_ex_csr_wr_en),
-        // .csr_wr_addr(ex_wb_csr_addr),
-        .csr_wr_addr(id_ex_csr_addr), 
-        // .csr_wr_data(ex_wb_csr_wr_data),
-        .csr_wr_data(csr_wr_data), // Already registered
+        .csr_wr_en(ex_wb_csr_wr_en),
+        .csr_wr_addr(ex_wb_csr_addr), 
+        .csr_wr_data(ex_wb_csr_wr_data),
         .csr_rd_addr(id_ex_csr_addr),
         .hw_wr_en(1'b0),
         .hw_wr_addr(2'b0),
         .hw_wr_data(32'b0),
-        .csr_rd_data(csr_rd_data) // Old csr value to get written to rd
+        .csr_rd_data(csr_rd_data)
     );
 
     riscv_execute riscv_execute_inst (
@@ -264,7 +270,7 @@ module riscv_cpu (
         .rs2_data(rs2_data),
         .mul_done(mul_done),
         .mul_busy(mul_busy),
-        .csr_rd_data(csr_rd_data),
+        .csr_rd_data(fwd_csr_rd_data),
         .csr_rd_en(id_ex_csr_rd_en),
         .csr_rw(id_ex_csr_rw),
         .csr_wr_data(csr_wr_data) // The data to be wrtten to the csr
