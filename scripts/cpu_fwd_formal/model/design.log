@@ -1,0 +1,1044 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Executing script file `../model/design.ys' --
+
+1. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_alu'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_cpu'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_csr'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_execute'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_fetch_decode'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_mul'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_regfile'.
+Successfully finished Verilog frontend.
+
+8. Executing Verilog-2005 frontend: /home/vatistas/hdl_rampup/sv-learning/tb/assertions/cpu_fwd_formal.sv
+Parsing formal SystemVerilog input from `/home/vatistas/hdl_rampup/sv-learning/tb/assertions/cpu_fwd_formal.sv' to AST representation.
+Storing AST representation for module `$abstract\riscv_cpu_formal'.
+Storing AST representation for module `$abstract\riscv_cpu_formal_props'.
+Successfully finished Verilog frontend.
+
+9. Executing PREP pass.
+
+9.1. Executing HIERARCHY pass (managing design hierarchy).
+
+9.2. Executing AST frontend in derive mode using pre-parsed AST for module `\riscv_cpu'.
+Generating RTLIL representation for module `\riscv_cpu'.
+
+9.2.1. Analyzing design hierarchy..
+Top module:  \riscv_cpu
+
+9.2.2. Executing AST frontend in derive mode using pre-parsed AST for module `\riscv_execute'.
+Generating RTLIL representation for module `\riscv_execute'.
+
+9.2.3. Executing AST frontend in derive mode using pre-parsed AST for module `\riscv_csr'.
+Generating RTLIL representation for module `\riscv_csr'.
+
+9.2.4. Executing AST frontend in derive mode using pre-parsed AST for module `\riscv_fetch_decode'.
+Generating RTLIL representation for module `\riscv_fetch_decode'.
+
+9.2.5. Analyzing design hierarchy..
+Top module:  \riscv_cpu
+Used module:     \riscv_execute
+Used module:     \riscv_csr
+Used module:     \riscv_fetch_decode
+
+9.2.6. Executing AST frontend in derive mode using pre-parsed AST for module `\riscv_mul'.
+Generating RTLIL representation for module `\riscv_mul'.
+
+9.2.7. Executing AST frontend in derive mode using pre-parsed AST for module `\riscv_alu'.
+Generating RTLIL representation for module `\riscv_alu'.
+
+9.2.8. Executing AST frontend in derive mode using pre-parsed AST for module `\riscv_regfile'.
+Generating RTLIL representation for module `\riscv_regfile'.
+
+9.2.9. Analyzing design hierarchy..
+Top module:  \riscv_cpu
+Used module:     \riscv_execute
+Used module:         \riscv_mul
+Used module:         \riscv_alu
+Used module:         \riscv_regfile
+Used module:     \riscv_csr
+Used module:     \riscv_fetch_decode
+
+9.2.10. Analyzing design hierarchy..
+Top module:  \riscv_cpu
+Used module:     \riscv_execute
+Used module:         \riscv_mul
+Used module:         \riscv_alu
+Used module:         \riscv_regfile
+Used module:     \riscv_csr
+Used module:     \riscv_fetch_decode
+Removing unused module `$abstract\riscv_cpu_formal_props'.
+Removing unused module `$abstract\riscv_cpu_formal'.
+Removing unused module `$abstract\riscv_regfile'.
+Removing unused module `$abstract\riscv_mul'.
+Removing unused module `$abstract\riscv_fetch_decode'.
+Removing unused module `$abstract\riscv_execute'.
+Removing unused module `$abstract\riscv_csr'.
+Removing unused module `$abstract\riscv_cpu'.
+Removing unused module `$abstract\riscv_alu'.
+Removed 9 unused modules.
+
+9.3. Executing PROC pass (convert processes to netlists).
+
+9.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+9.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87 in module riscv_mul.
+Marked 1 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$86 in module riscv_mul.
+Removed 2 dead cases from process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81 in module riscv_fetch_decode.
+Marked 5 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81 in module riscv_fetch_decode.
+Marked 2 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64 in module riscv_csr.
+Marked 2 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv:61$57 in module riscv_execute.
+Marked 1 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48 in module riscv_cpu.
+Marked 1 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:171$31 in module riscv_cpu.
+Marked 2 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26 in module riscv_cpu.
+Marked 3 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:93$22 in module riscv_cpu.
+Marked 2 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:26$120 in module riscv_regfile.
+Marked 1 switch rules as full_case in process $proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:0$97 in module riscv_alu.
+Removed a total of 2 dead cases.
+
+9.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 25 redundant assignments.
+Promoted 34 assignments to connections.
+
+9.3.4. Executing PROC_INIT pass (extract init attributes).
+
+9.3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+9.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~24 debug messages>
+
+9.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+     1/7: $0\done[0:0]
+     2/7: $0\running_total[63:0]
+     3/7: $0\op_latched[3:0]
+     4/7: $0\op_b_latched[31:0]
+     5/7: $0\op_a_latched[31:0]
+     6/7: $0\bit_idx[5:0]
+     7/7: $0\busy[0:0]
+Creating decoders for process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$86'.
+     1/1: $1\result[31:0]
+Creating decoders for process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+     1/23: $5\ex_op[3:0]
+     2/23: $4\reg_wr_en[0:0]
+     3/23: $4\mul_start[0:0]
+     4/23: $4\ex_op[3:0]
+     5/23: $3\ex_op[3:0]
+     6/23: $3\mul_start[0:0]
+     7/23: $3\reg_wr_en[0:0]
+     8/23: $2\mul_start[0:0]
+     9/23: $2\reg_wr_en[0:0]
+    10/23: $2\ex_op[3:0]
+    11/23: $1\mul_start[0:0]
+    12/23: $1\reg_wr_en[0:0]
+    13/23: $1\ex_op[3:0]
+    14/23: $1\alu_src[0:0]
+    15/23: $1\csr_addr[11:0]
+    16/23: $1\csr_wr_en[0:0]
+    17/23: $1\csr_rw[0:0]
+    18/23: $1\csr_rd_en[0:0]
+    19/23: $1\mem_to_reg[0:0]
+    20/23: $1\mem_write[0:0]
+    21/23: $1\mem_read[0:0]
+    22/23: $1\branch[0:0]
+    23/23: $1\imm[31:0]
+Creating decoders for process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+     1/9: $2$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$79
+     2/9: $2$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_DATA[31:0]$78
+     3/9: $2$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_ADDR[1:0]$77
+     4/9: $1$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$73
+     5/9: $1$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_DATA[31:0]$72
+     6/9: $1$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_ADDR[1:0]$71
+     7/9: $1$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$76
+     8/9: $1$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_DATA[31:0]$75
+     9/9: $1$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_ADDR[1:0]$74
+Creating decoders for process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:0$62'.
+Creating decoders for process `\riscv_execute.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv:61$57'.
+     1/2: $0\result_src[0:0]
+     2/2: $0\mul_result_latched[31:0]
+Creating decoders for process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+     1/7: $0\ex_wb_csr_addr[1:0]
+     2/7: $0\ex_wb_csr_wr_en[0:0]
+     3/7: $0\ex_wb_csr_wr_data[31:0]
+     4/7: $0\ex_wb_reg_wr_en[0:0]
+     5/7: $0\ex_wb_rd_addr[4:0]
+     6/7: $0\ex_wb_mem_to_reg[0:0]
+     7/7: $0\ex_wb_ex_result[31:0]
+Creating decoders for process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:171$31'.
+     1/3: $1$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$37
+     2/3: $1$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_DATA[31:0]$36
+     3/3: $1$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_ADDR[7:0]$35
+Creating decoders for process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+     1/17: $0\id_ex_csr_addr[1:0]
+     2/17: $0\id_ex_csr_rw[0:0]
+     3/17: $0\id_ex_csr_wr_en[0:0]
+     4/17: $0\id_ex_csr_rd_en[0:0]
+     5/17: $0\id_ex_func3[2:0]
+     6/17: $0\id_ex_branch[0:0]
+     7/17: $0\id_ex_mem_to_reg[0:0]
+     8/17: $0\id_ex_mem_write[0:0]
+     9/17: $0\id_ex_mem_read[0:0]
+    10/17: $0\id_ex_alu_src[0:0]
+    11/17: $0\id_ex_reg_wr_en[0:0]
+    12/17: $0\id_ex_ex_op[3:0]
+    13/17: $0\id_ex_imm[31:0]
+    14/17: $0\id_ex_rd_addr[4:0]
+    15/17: $0\id_ex_rs2_addr[4:0]
+    16/17: $0\id_ex_rs1_addr[4:0]
+    17/17: $0\id_ex_pc[31:0]
+Creating decoders for process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:93$22'.
+     1/1: $0\pc[31:0]
+Creating decoders for process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:87$13'.
+Creating decoders for process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:83$12'.
+Creating decoders for process `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:26$120'.
+     1/7: $2$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$133
+     2/7: $2$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_DATA[31:0]$132
+     3/7: $2$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_ADDR[4:0]$131
+     4/7: $1$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$125
+     5/7: $1$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$128
+     6/7: $1$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_DATA[31:0]$127
+     7/7: $1$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_ADDR[4:0]$126
+Creating decoders for process `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:0$113'.
+Creating decoders for process `\riscv_alu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:0$97'.
+     1/1: $1\result[31:0]
+
+9.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\riscv_mul.\result' from process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$86'.
+No latch inferred for signal `\riscv_fetch_decode.\imm' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\ex_op' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\reg_wr_en' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\alu_src' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\branch' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\mem_read' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\mem_write' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\mem_to_reg' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\mul_start' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\csr_rd_en' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\csr_rw' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\csr_wr_en' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_fetch_decode.\csr_addr' from process `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+No latch inferred for signal `\riscv_csr.\csr_rd_data' from process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:0$62'.
+No latch inferred for signal `\riscv_regfile.\rs2_data' from process `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:0$113'.
+No latch inferred for signal `\riscv_regfile.\rs1_data' from process `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:0$113'.
+No latch inferred for signal `\riscv_alu.\zero' from process `\riscv_alu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:0$97'.
+No latch inferred for signal `\riscv_alu.\result' from process `\riscv_alu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:0$97'.
+
+9.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\riscv_mul.\done' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+  created $dff cell `$procdff$687' with positive edge clock.
+Creating register for signal `\riscv_mul.\busy' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+  created $dff cell `$procdff$688' with positive edge clock.
+Creating register for signal `\riscv_mul.\bit_idx' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+  created $dff cell `$procdff$689' with positive edge clock.
+Creating register for signal `\riscv_mul.\op_a_latched' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+  created $dff cell `$procdff$690' with positive edge clock.
+Creating register for signal `\riscv_mul.\op_b_latched' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+  created $dff cell `$procdff$691' with positive edge clock.
+Creating register for signal `\riscv_mul.\op_latched' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+  created $dff cell `$procdff$692' with positive edge clock.
+Creating register for signal `\riscv_mul.\running_total' using process `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+  created $dff cell `$procdff$693' with positive edge clock.
+Creating register for signal `\riscv_csr.$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_ADDR' using process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+  created $dff cell `$procdff$694' with positive edge clock.
+Creating register for signal `\riscv_csr.$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_DATA' using process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+  created $dff cell `$procdff$695' with positive edge clock.
+Creating register for signal `\riscv_csr.$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN' using process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+  created $dff cell `$procdff$696' with positive edge clock.
+Creating register for signal `\riscv_csr.$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_ADDR' using process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+  created $dff cell `$procdff$697' with positive edge clock.
+Creating register for signal `\riscv_csr.$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_DATA' using process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+  created $dff cell `$procdff$698' with positive edge clock.
+Creating register for signal `\riscv_csr.$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN' using process `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+  created $dff cell `$procdff$699' with positive edge clock.
+Creating register for signal `\riscv_execute.\mul_result_latched' using process `\riscv_execute.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv:61$57'.
+  created $dff cell `$procdff$700' with positive edge clock.
+Creating register for signal `\riscv_execute.\result_src' using process `\riscv_execute.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv:61$57'.
+  created $dff cell `$procdff$701' with positive edge clock.
+Creating register for signal `\riscv_cpu.\ex_wb_ex_result' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+  created $dff cell `$procdff$702' with positive edge clock.
+Creating register for signal `\riscv_cpu.\ex_wb_mem_to_reg' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+  created $dff cell `$procdff$703' with positive edge clock.
+Creating register for signal `\riscv_cpu.\ex_wb_rd_addr' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+  created $dff cell `$procdff$704' with positive edge clock.
+Creating register for signal `\riscv_cpu.\ex_wb_reg_wr_en' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+  created $dff cell `$procdff$705' with positive edge clock.
+Creating register for signal `\riscv_cpu.\ex_wb_csr_wr_data' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+  created $dff cell `$procdff$706' with positive edge clock.
+Creating register for signal `\riscv_cpu.\ex_wb_csr_wr_en' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+  created $dff cell `$procdff$707' with positive edge clock.
+Creating register for signal `\riscv_cpu.\ex_wb_csr_addr' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+  created $dff cell `$procdff$708' with positive edge clock.
+Creating register for signal `\riscv_cpu.$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_ADDR' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:171$31'.
+  created $dff cell `$procdff$709' with positive edge clock.
+Creating register for signal `\riscv_cpu.$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_DATA' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:171$31'.
+  created $dff cell `$procdff$710' with positive edge clock.
+Creating register for signal `\riscv_cpu.$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:171$31'.
+  created $dff cell `$procdff$711' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_rs1_addr' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$712' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_rs2_addr' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$713' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_rd_addr' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$714' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_imm' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$715' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_ex_op' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$716' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_reg_wr_en' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$717' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_alu_src' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$718' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_mem_read' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$719' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_mem_write' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$720' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_mem_to_reg' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$721' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_branch' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$722' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_func3' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$723' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_pc' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$724' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_csr_rd_en' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$725' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_csr_rw' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$726' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_csr_wr_en' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$727' with positive edge clock.
+Creating register for signal `\riscv_cpu.\id_ex_csr_addr' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+  created $dff cell `$procdff$728' with positive edge clock.
+Creating register for signal `\riscv_cpu.\pc' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:93$22'.
+  created $dff cell `$procdff$729' with positive edge clock.
+Creating register for signal `\riscv_cpu.\real_start' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:87$13'.
+  created $dff cell `$procdff$730' with positive edge clock.
+Creating register for signal `\riscv_cpu.\branch_stall' using process `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:83$12'.
+  created $dff cell `$procdff$731' with positive edge clock.
+Creating register for signal `\riscv_regfile.$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN' using process `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:26$120'.
+  created $dff cell `$procdff$732' with positive edge clock.
+Creating register for signal `\riscv_regfile.$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_ADDR' using process `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:26$120'.
+  created $dff cell `$procdff$733' with positive edge clock.
+Creating register for signal `\riscv_regfile.$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_DATA' using process `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:26$120'.
+  created $dff cell `$procdff$734' with positive edge clock.
+Creating register for signal `\riscv_regfile.$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN' using process `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:26$120'.
+  created $dff cell `$procdff$735' with positive edge clock.
+
+9.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+9.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+Removing empty process `riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:32$87'.
+Found and cleaned up 1 empty switch in `\riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$86'.
+Removing empty process `riscv_mul.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:0$86'.
+Found and cleaned up 5 empty switches in `\riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+Removing empty process `riscv_fetch_decode.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:0$81'.
+Found and cleaned up 2 empty switches in `\riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+Removing empty process `riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:25$64'.
+Removing empty process `riscv_csr.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:0$62'.
+Found and cleaned up 2 empty switches in `\riscv_execute.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv:61$57'.
+Removing empty process `riscv_execute.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_execute.sv:61$57'.
+Found and cleaned up 1 empty switch in `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+Removing empty process `riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:186$48'.
+Found and cleaned up 1 empty switch in `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:171$31'.
+Removing empty process `riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:171$31'.
+Found and cleaned up 2 empty switches in `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+Removing empty process `riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:108$26'.
+Found and cleaned up 3 empty switches in `\riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:93$22'.
+Removing empty process `riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:93$22'.
+Removing empty process `riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:87$13'.
+Removing empty process `riscv_cpu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:83$12'.
+Found and cleaned up 2 empty switches in `\riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:26$120'.
+Removing empty process `riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:26$120'.
+Removing empty process `riscv_regfile.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:0$113'.
+Found and cleaned up 1 empty switch in `\riscv_alu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:0$97'.
+Removing empty process `riscv_alu.$proc$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:0$97'.
+Cleaned up 24 empty switches.
+
+9.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_mul.
+Optimizing module riscv_fetch_decode.
+<suppressed ~7 debug messages>
+Optimizing module riscv_csr.
+Optimizing module riscv_execute.
+Optimizing module riscv_cpu.
+<suppressed ~3 debug messages>
+Optimizing module riscv_regfile.
+<suppressed ~3 debug messages>
+Optimizing module riscv_alu.
+<suppressed ~2 debug messages>
+
+9.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_mul.
+Optimizing module riscv_fetch_decode.
+Optimizing module riscv_csr.
+Optimizing module riscv_execute.
+Optimizing module riscv_cpu.
+Optimizing module riscv_regfile.
+Optimizing module riscv_alu.
+
+9.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_mul..
+Finding unused cells or wires in module \riscv_fetch_decode..
+Finding unused cells or wires in module \riscv_csr..
+Finding unused cells or wires in module \riscv_execute..
+Finding unused cells or wires in module \riscv_cpu..
+Finding unused cells or wires in module \riscv_regfile..
+Finding unused cells or wires in module \riscv_alu..
+Removed 16 unused cells and 263 unused wires.
+<suppressed ~26 debug messages>
+
+9.6. Executing CHECK pass (checking for obvious problems).
+Checking module riscv_alu...
+Checking module riscv_cpu...
+Checking module riscv_csr...
+Checking module riscv_execute...
+Checking module riscv_fetch_decode...
+Checking module riscv_mul...
+Checking module riscv_regfile...
+Found and reported 0 problems.
+
+9.7. Executing OPT pass (performing simple optimizations).
+
+9.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_alu.
+Optimizing module riscv_cpu.
+Optimizing module riscv_csr.
+Optimizing module riscv_execute.
+Optimizing module riscv_fetch_decode.
+Optimizing module riscv_mul.
+Optimizing module riscv_regfile.
+
+9.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\riscv_alu'.
+Finding identical cells in module `\riscv_cpu'.
+<suppressed ~6 debug messages>
+Finding identical cells in module `\riscv_csr'.
+Finding identical cells in module `\riscv_execute'.
+Finding identical cells in module `\riscv_fetch_decode'.
+<suppressed ~183 debug messages>
+Finding identical cells in module `\riscv_mul'.
+Finding identical cells in module `\riscv_regfile'.
+Removed a total of 63 cells.
+
+9.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \riscv_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_cpu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_csr..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$460.
+    dead port 1/2 on $mux $procmux$466.
+    dead port 1/2 on $mux $procmux$472.
+Running muxtree optimizer on module \riscv_execute..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port B of cell $procmux$493: \mul_done -> 1'1
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_fetch_decode..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$274.
+    dead port 2/2 on $mux $procmux$370.
+    dead port 2/2 on $mux $procmux$293.
+    dead port 2/2 on $mux $procmux$295.
+    dead port 2/2 on $mux $procmux$313.
+    dead port 2/2 on $mux $procmux$227.
+    dead port 2/2 on $mux $procmux$315.
+    dead port 2/2 on $mux $procmux$387.
+    dead port 2/2 on $mux $procmux$334.
+    dead port 2/2 on $mux $procmux$240.
+    dead port 2/2 on $mux $procmux$336.
+    dead port 2/2 on $mux $procmux$242.
+    dead port 2/2 on $mux $procmux$256.
+    dead port 2/2 on $mux $procmux$258.
+    dead port 2/2 on $mux $procmux$353.
+    dead port 2/2 on $mux $procmux$272.
+Running muxtree optimizer on module \riscv_mul..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_regfile..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$649.
+    dead port 1/2 on $mux $procmux$655.
+    dead port 1/2 on $mux $procmux$661.
+Removed 22 multiplexer ports.
+<suppressed ~72 debug messages>
+
+9.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \riscv_alu.
+  Optimizing cells in module \riscv_cpu.
+    Consolidated identical input bits for $mux cell $procmux$526:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0]
+      New connections: $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [31:1] = { $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] $0$memwr$\dmem$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:173$1_EN[31:0]$34 [0] }
+  Optimizing cells in module \riscv_cpu.
+  Optimizing cells in module \riscv_csr.
+    Consolidated identical input bits for $mux cell $procmux$457:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$procmux$457_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$457_Y [0]
+      New connections: $procmux$457_Y [31:1] = { $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] $procmux$457_Y [0] }
+    Consolidated identical input bits for $mux cell $procmux$475:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0]
+      New connections: $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [31:1] = { $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:27$60_EN[31:0]$67 [0] }
+  Optimizing cells in module \riscv_csr.
+    Consolidated identical input bits for $mux cell $procmux$484:
+      Old ports: A=$2$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$79, B=0, Y=$0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70
+      New ports: A=$procmux$457_Y [0], B=1'0, Y=$0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0]
+      New connections: $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [31:1] = { $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] $0$memwr$\csr_regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_csr.sv:29$61_EN[31:0]$70 [0] }
+  Optimizing cells in module \riscv_csr.
+  Optimizing cells in module \riscv_execute.
+  Optimizing cells in module \riscv_fetch_decode.
+    New ctrl vector for $pmux cell $procmux$398: { $procmux$243_CMP $auto$opt_reduce.cc:134:opt_pmux$742 }
+    New ctrl vector for $pmux cell $procmux$344: { $procmux$226_CMP $eq$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:167$84_Y $auto$opt_reduce.cc:134:opt_pmux$744 }
+    New ctrl vector for $pmux cell $procmux$413: $auto$opt_reduce.cc:134:opt_pmux$746
+    New ctrl vector for $pmux cell $procmux$451: { $procmux$408_CMP $auto$opt_reduce.cc:134:opt_pmux$748 $procmux$414_CMP }
+    New ctrl vector for $pmux cell $procmux$361: $auto$opt_reduce.cc:134:opt_pmux$750
+  Optimizing cells in module \riscv_fetch_decode.
+  Optimizing cells in module \riscv_mul.
+  Optimizing cells in module \riscv_regfile.
+    Consolidated identical input bits for $mux cell $procmux$646:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$procmux$646_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$646_Y [0]
+      New connections: $procmux$646_Y [31:1] = { $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] $procmux$646_Y [0] }
+    Consolidated identical input bits for $mux cell $procmux$664:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0]
+      New connections: $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [31:1] = { $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:28$111_EN[31:0]$121 [0] }
+  Optimizing cells in module \riscv_regfile.
+    Consolidated identical input bits for $mux cell $procmux$667:
+      Old ports: A=$2$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$133, B=0, Y=$0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124
+      New ports: A=$procmux$646_Y [0], B=1'0, Y=$0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0]
+      New connections: $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [31:1] = { $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] $0$memwr$\regs$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv:30$112_EN[31:0]$124 [0] }
+  Optimizing cells in module \riscv_regfile.
+Performed a total of 12 changes.
+
+9.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\riscv_alu'.
+Finding identical cells in module `\riscv_cpu'.
+Finding identical cells in module `\riscv_csr'.
+Finding identical cells in module `\riscv_execute'.
+Finding identical cells in module `\riscv_fetch_decode'.
+<suppressed ~12 debug messages>
+Finding identical cells in module `\riscv_mul'.
+Finding identical cells in module `\riscv_regfile'.
+Removed a total of 4 cells.
+
+9.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_alu..
+Finding unused cells or wires in module \riscv_cpu..
+Finding unused cells or wires in module \riscv_csr..
+Finding unused cells or wires in module \riscv_execute..
+Finding unused cells or wires in module \riscv_fetch_decode..
+Finding unused cells or wires in module \riscv_mul..
+Finding unused cells or wires in module \riscv_regfile..
+Removed 0 unused cells and 87 unused wires.
+<suppressed ~4 debug messages>
+
+9.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_alu.
+Optimizing module riscv_cpu.
+Optimizing module riscv_csr.
+Optimizing module riscv_execute.
+Optimizing module riscv_fetch_decode.
+Optimizing module riscv_mul.
+Optimizing module riscv_regfile.
+
+9.7.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.7.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \riscv_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_cpu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_csr..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_execute..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_fetch_decode..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_mul..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_regfile..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~71 debug messages>
+
+9.7.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \riscv_alu.
+  Optimizing cells in module \riscv_cpu.
+  Optimizing cells in module \riscv_csr.
+  Optimizing cells in module \riscv_execute.
+  Optimizing cells in module \riscv_fetch_decode.
+    New ctrl vector for $pmux cell $procmux$344: { $auto$opt_reduce.cc:134:opt_pmux$752 $auto$opt_reduce.cc:134:opt_pmux$744 }
+  Optimizing cells in module \riscv_fetch_decode.
+  Optimizing cells in module \riscv_mul.
+  Optimizing cells in module \riscv_regfile.
+Performed a total of 1 changes.
+
+9.7.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\riscv_alu'.
+Finding identical cells in module `\riscv_cpu'.
+Finding identical cells in module `\riscv_csr'.
+Finding identical cells in module `\riscv_execute'.
+Finding identical cells in module `\riscv_fetch_decode'.
+Finding identical cells in module `\riscv_mul'.
+Finding identical cells in module `\riscv_regfile'.
+Removed a total of 0 cells.
+
+9.7.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_alu..
+Finding unused cells or wires in module \riscv_cpu..
+Finding unused cells or wires in module \riscv_csr..
+Finding unused cells or wires in module \riscv_execute..
+Finding unused cells or wires in module \riscv_fetch_decode..
+Finding unused cells or wires in module \riscv_mul..
+Finding unused cells or wires in module \riscv_regfile..
+
+9.7.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_alu.
+Optimizing module riscv_cpu.
+Optimizing module riscv_csr.
+Optimizing module riscv_execute.
+Optimizing module riscv_fetch_decode.
+Optimizing module riscv_mul.
+Optimizing module riscv_regfile.
+
+9.7.14. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.7.15. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \riscv_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_cpu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_csr..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_execute..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_fetch_decode..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_mul..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \riscv_regfile..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~71 debug messages>
+
+9.7.16. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \riscv_alu.
+  Optimizing cells in module \riscv_cpu.
+  Optimizing cells in module \riscv_csr.
+  Optimizing cells in module \riscv_execute.
+  Optimizing cells in module \riscv_fetch_decode.
+  Optimizing cells in module \riscv_mul.
+  Optimizing cells in module \riscv_regfile.
+Performed a total of 0 changes.
+
+9.7.17. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\riscv_alu'.
+Finding identical cells in module `\riscv_cpu'.
+Finding identical cells in module `\riscv_csr'.
+Finding identical cells in module `\riscv_execute'.
+Finding identical cells in module `\riscv_fetch_decode'.
+Finding identical cells in module `\riscv_mul'.
+Finding identical cells in module `\riscv_regfile'.
+Removed a total of 0 cells.
+
+9.7.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_alu..
+Finding unused cells or wires in module \riscv_cpu..
+Finding unused cells or wires in module \riscv_csr..
+Finding unused cells or wires in module \riscv_execute..
+Finding unused cells or wires in module \riscv_fetch_decode..
+Finding unused cells or wires in module \riscv_mul..
+Finding unused cells or wires in module \riscv_regfile..
+
+9.7.19. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_alu.
+Optimizing module riscv_cpu.
+Optimizing module riscv_csr.
+Optimizing module riscv_execute.
+Optimizing module riscv_fetch_decode.
+Optimizing module riscv_mul.
+Optimizing module riscv_regfile.
+
+9.7.20. Finished OPT passes. (There is nothing left to do.)
+
+9.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 31 bits (of 32) from mux cell riscv_alu.$ternary$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:22$107 ($mux).
+Removed top 31 bits (of 32) from mux cell riscv_alu.$ternary$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:23$109 ($mux).
+Removed top 1 bits (of 4) from port B of cell riscv_alu.$procmux$679_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell riscv_alu.$procmux$680_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell riscv_alu.$procmux$681_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell riscv_alu.$procmux$682_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell riscv_alu.$procmux$683_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell riscv_alu.$procmux$684_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell riscv_alu.$procmux$685_CMP0 ($eq).
+Removed top 31 bits (of 32) from wire riscv_alu.$ternary$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:22$107_Y.
+Removed top 31 bits (of 32) from wire riscv_alu.$ternary$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_alu.sv:23$109_Y.
+Removed top 2 bits (of 3) from port B of cell riscv_cpu.$eq$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:81$7 ($eq).
+Removed top 29 bits (of 32) from port B of cell riscv_cpu.$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_cpu.sv:101$25 ($add).
+Removed top 3 bits (of 4) from mux cell riscv_fetch_decode.$ternary$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:111$82 ($mux).
+Removed top 2 bits (of 3) from port B of cell riscv_fetch_decode.$eq$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:167$84 ($eq).
+Removed top 1 bits (of 3) from port B of cell riscv_fetch_decode.$procmux$223_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell riscv_fetch_decode.$procmux$224_CMP0 ($eq).
+Removed top 2 bits (of 7) from port B of cell riscv_fetch_decode.$procmux$228_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell riscv_fetch_decode.$procmux$243_CMP0 ($eq).
+Removed top 6 bits (of 7) from port B of cell riscv_fetch_decode.$procmux$255_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell riscv_fetch_decode.$procmux$292_CMP0 ($eq).
+Removed top 5 bits (of 7) from port B of cell riscv_fetch_decode.$procmux$400_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell riscv_fetch_decode.$procmux$414_CMP0 ($eq).
+Removed top 3 bits (of 4) from wire riscv_fetch_decode.$ternary$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_fetch_decode.sv:111$82_Y.
+Removed top 31 bits (of 32) from port B of cell riscv_mul.$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:44$90 ($add).
+Removed top 26 bits (of 32) from port Y of cell riscv_mul.$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:44$90 ($add).
+Removed top 32 bits (of 64) from port A of cell riscv_mul.$shl$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:45$92 ($shl).
+Removed top 26 bits (of 32) from wire riscv_mul.$add$/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_mul.sv:44$90_Y.
+Removed top 27 address bits (of 32) from memory init port riscv_regfile.$auto$proc_memwr.cc:45:proc_memwr$739 (regs).
+
+9.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_alu..
+Finding unused cells or wires in module \riscv_cpu..
+Finding unused cells or wires in module \riscv_csr..
+Finding unused cells or wires in module \riscv_execute..
+Finding unused cells or wires in module \riscv_fetch_decode..
+Finding unused cells or wires in module \riscv_mul..
+Finding unused cells or wires in module \riscv_regfile..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~3 debug messages>
+
+9.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+9.11. Executing OPT pass (performing simple optimizations).
+
+9.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module riscv_alu.
+Optimizing module riscv_cpu.
+Optimizing module riscv_csr.
+Optimizing module riscv_execute.
+Optimizing module riscv_fetch_decode.
+Optimizing module riscv_mul.
+Optimizing module riscv_regfile.
+
+9.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\riscv_alu'.
+Finding identical cells in module `\riscv_cpu'.
+Finding identical cells in module `\riscv_csr'.
+Finding identical cells in module `\riscv_execute'.
+Finding identical cells in module `\riscv_fetch_decode'.
+Finding identical cells in module `\riscv_mul'.
+Finding identical cells in module `\riscv_regfile'.
+Removed a total of 0 cells.
+
+9.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \riscv_alu..
+Finding unused cells or wires in module \riscv_cpu..
+Finding unused cells or wires in module \riscv_csr..
+Finding unused cells or wires in module \riscv_execute..
+Finding unused cells or wires in module \riscv_fetch_decode..
+Finding unused cells or wires in module \riscv_mul..
+Finding unused cells or wires in module \riscv_regfile..
+
+9.11.4. Finished fast OPT passes.
+
+9.12. Printing statistics.
+
+=== riscv_alu ===
+
+   Number of wires:                 27
+   Number of wire bits:            433
+   Number of public wires:           5
+   Number of public wire bits:     101
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 24
+     $add                            1
+     $and                            1
+     $eq                             9
+     $logic_not                      2
+     $lt                             2
+     $mux                            2
+     $or                             1
+     $pmux                           1
+     $shl                            1
+     $shr                            1
+     $sshr                           1
+     $sub                            1
+     $xor                            1
+
+=== riscv_cpu ===
+
+   Number of wires:                134
+   Number of wire bits:           1070
+   Number of public wires:          61
+   Number of public wire bits:     546
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                110
+     $add                            2
+     $dff                           26
+     $eq                             6
+     $logic_and                     11
+     $logic_not                      4
+     $logic_or                       6
+     $mem_v2                         1
+     $mux                           50
+     $reduce_bool                    1
+     riscv_csr                       1
+     riscv_execute                   1
+     riscv_fetch_decode              1
+
+=== riscv_csr ===
+
+   Number of wires:                 18
+   Number of wire bits:            303
+   Number of public wires:           9
+   Number of public wire bits:     105
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 10
+     $mem_v2                         1
+     $mux                            9
+
+=== riscv_execute ===
+
+   Number of wires:                 38
+   Number of wire bits:            584
+   Number of public wires:          32
+   Number of public wire bits:     454
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 16
+     $dff                            2
+     $mux                           10
+     $or                             1
+     riscv_alu                       1
+     riscv_mul                       1
+     riscv_regfile                   1
+
+=== riscv_fetch_decode ===
+
+   Number of wires:                 54
+   Number of wire bits:            202
+   Number of public wires:          23
+   Number of public wire bits:     156
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 43
+     $eq                            15
+     $logic_not                      1
+     $mem_v2                         1
+     $mux                           13
+     $pmux                           7
+     $reduce_or                      6
+
+=== riscv_mul ===
+
+   Number of wires:                 52
+   Number of wire bits:           1007
+   Number of public wires:          14
+   Number of public wire bits:     243
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 46
+     $add                            2
+     $dff                            7
+     $eq                             3
+     $logic_and                      2
+     $mux                           28
+     $ne                             1
+     $pmux                           1
+     $shiftx                         1
+     $shl                            1
+
+=== riscv_regfile ===
+
+   Number of wires:                 22
+   Number of wire bits:            352
+   Number of public wires:           9
+   Number of public wire bits:     114
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 14
+     $logic_and                      1
+     $logic_not                      2
+     $mem_v2                         1
+     $mux                            9
+     $reduce_bool                    1
+
+=== design hierarchy ===
+
+   riscv_cpu                         1
+     riscv_csr                       1
+     riscv_execute                   1
+       riscv_alu                     1
+       riscv_mul                     1
+       riscv_regfile                 1
+     riscv_fetch_decode              1
+
+   Number of wires:                345
+   Number of wire bits:           3951
+   Number of public wires:         153
+   Number of public wire bits:    1719
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                257
+     $add                            5
+     $and                            1
+     $dff                           35
+     $eq                            33
+     $logic_and                     14
+     $logic_not                      9
+     $logic_or                       6
+     $lt                             2
+     $mem_v2                         4
+     $mux                          121
+     $ne                             1
+     $or                             2
+     $pmux                           9
+     $reduce_bool                    2
+     $reduce_or                      6
+     $shiftx                         1
+     $shl                            2
+     $shr                            1
+     $sshr                           1
+     $sub                            1
+     $xor                            1
+
+9.13. Executing CHECK pass (checking for obvious problems).
+Checking module riscv_alu...
+Checking module riscv_cpu...
+Checking module riscv_csr...
+Checking module riscv_execute...
+Checking module riscv_fetch_decode...
+Checking module riscv_mul...
+Checking module riscv_regfile...
+Found and reported 0 problems.
+
+10. Executing HIERARCHY pass (managing design hierarchy).
+
+10.1. Analyzing design hierarchy..
+Top module:  \riscv_cpu
+Used module:     \riscv_csr
+Used module:     \riscv_execute
+Used module:         \riscv_alu
+Used module:         \riscv_mul
+Used module:         \riscv_regfile
+Used module:     \riscv_fetch_decode
+
+10.2. Analyzing design hierarchy..
+Top module:  \riscv_cpu
+Used module:     \riscv_csr
+Used module:     \riscv_execute
+Used module:         \riscv_alu
+Used module:         \riscv_mul
+Used module:         \riscv_regfile
+Used module:     \riscv_fetch_decode
+Removed 0 unused modules.
+
+11. Executing jny backend.
+
+12. Executing RTLIL backend.
+Output filename: ../model/design.il
+
+End of script. Logfile hash: 532575fc2f, CPU: user 1.12s system 0.02s, MEM: 16.15 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 25% 6x opt_clean (0 sec), 17% 7x opt_expr (0 sec), ...

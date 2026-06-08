@@ -1,0 +1,14 @@
+[options]
+mode prove
+
+[engines]
+smtbmc z3
+
+[script]
+read -formal /home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv
+read -formal /home/vatistas/hdl_rampup/sv-learning/tb/assertions/regfile_formal.sv
+prep -top riscv_regfile
+
+[files]
+/home/vatistas/hdl_rampup/sv-learning/rtl/riscv_regfile.sv
+/home/vatistas/hdl_rampup/sv-learning/tb/assertions/regfile_formal.sv
