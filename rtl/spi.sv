@@ -30,9 +30,10 @@ module spi_master #(
     logic busy;
 
 
+
     // Compute the sclk
     always_ff @(posedge clk) begin
-        if (rst) begin
+        if (rst || !busy) begin
             sclk <= 1'b0;
             clk_div_counter <= (DIV_COUNTER_WIDTH)'(0);
         end else if (clk_div_counter == (DIV_COUNTER_WIDTH)'(CLKDIV/2 -1)) begin
@@ -65,13 +66,13 @@ module spi_master #(
             mosi <= data_in[DATA_WIDTH -1];
         end else if (busy) begin
             if (rising_edge) begin
-                // Drive MOSI logic here
+                // Sample MISO logic here
                 if (shift_reg_counter < DATA_WIDTH) begin
                     shift_reg_counter <= shift_reg_counter + 1;
                     shift_reg <= {shift_reg[DATA_WIDTH - 2 : 0], miso};
                 end
             end else if (falling_edge) begin
-                // Sample MISO logic here
+                // Drive MOSI logic here
                 mosi <= shift_reg[DATA_WIDTH -1];
                 if (shift_reg_counter == DATA_WIDTH) begin
                     done <= 1'b1;
