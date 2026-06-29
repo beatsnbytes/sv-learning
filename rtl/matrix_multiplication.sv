@@ -95,10 +95,10 @@ module matrix_multiplication #(
     always_ff @(posedge clk) begin
         if (rst) begin
             busy <= 1'b0;
-        end else if (start) begin
-            busy <= 1'b1;
         end else if (done) begin
             busy <= 1'b0;
+        end else if (start) begin
+            busy <= 1'b1;
         end
     end
 
